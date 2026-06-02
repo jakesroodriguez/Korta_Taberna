@@ -514,34 +514,39 @@
         }
 
         .dynamic-island .nav-menu a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 16px;
+            background: rgba(83, 88, 69, 0.04);
+            border: 1px solid rgba(83, 88, 69, 0.08);
             font-family: var(--font-body);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            color: var(--color-text-sec);
+            color: var(--color-text-main);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            position: relative;
-            transition: var(--transition);
+            letter-spacing: 0.05em;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
         }
 
         .dynamic-island .nav-menu a:hover {
-            color: var(--color-primary);
+            background: var(--color-primary);
+            color: var(--color-white) !important;
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(83, 88, 69, 0.15);
         }
 
-        .dynamic-island .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background-color: var(--color-primary);
-            transition: var(--transition);
-            transform: translateX(-50%);
+        /* Animación para el icono dentro de los botones */
+        .dynamic-island .nav-menu a svg {
+            transition: transform 0.3s ease;
         }
-
-        .dynamic-island .nav-menu a:hover::after {
-            width: 100%;
+        
+        .dynamic-island .nav-menu a:hover svg {
+            transform: scale(1.1);
         }
 
         .dynamic-island .header-actions {
@@ -1266,162 +1271,160 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 220px;
             gap: 15px;
         }
 
         .gallery-item {
-            height: 250px;
             background-size: cover;
             background-position: center;
             border-radius: 16px; /* Soft geometric corner matching system */
             transition: transform var(--transition);
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             z-index: 10;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(6) { grid-column: span 2; grid-row: span 1; }
 
         /* FOOTER */
         .footer {
             background-color: var(--color-footer-bg);
-            padding: 80px 0 30px;
+            padding: 40px 0 20px;
             color: var(--color-footer-text);
+            overflow: hidden;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1.5fr 1.5fr;
+        .footer-marquee-wrap {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            background: var(--color-gold);
+            color: var(--color-bg);
+            padding: 20px 0;
+            margin-bottom: 50px;
+            cursor: pointer;
+            position: relative;
+            transform: rotate(-1deg) scale(1.02);
+            transition: transform 0.4s ease;
+        }
+
+        .footer-marquee-wrap:hover {
+            transform: rotate(0deg) scale(1.05);
+            background: #fff;
+            color: var(--color-primary);
+        }
+
+        .footer-marquee {
+            display: flex;
+            white-space: nowrap;
             gap: 40px;
-            margin-bottom: 60px;
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: marqueeScroll 20s linear infinite;
+        }
+        
+        .footer-marquee-wrap:hover .footer-marquee {
+            animation-play-state: paused;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .footer-minimal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .footer-col-minimal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
         .footer-logo {
             font-family: var(--font-heading);
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--color-white);
-            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-gold);
+            letter-spacing: -0.5px;
         }
 
-        .footer-tagline {
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
+        .social-links-minimal {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .social-links a {
-            color: var(--color-footer-text);
-        }
-
-        .social-links a:hover {
-            color: var(--color-white);
-        }
-
-        .footer-title {
-            color: var(--color-white);
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-links, .footer-contact {
-            list-style: none;
-        }
-
-        .footer-links li, .footer-contact li {
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .footer-links a:hover, .footer-contact a:hover {
-            color: var(--color-white);
-        }
-
-        .newsletter-form {
+        .social-links-minimal a {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            background: transparent;
-            border: 1px solid var(--color-primary);
-            padding: 12px;
-            border-radius: 6px;
-            color: var(--color-white);
-            font-family: var(--font-body);
-        }
-
-        .newsletter-form input::placeholder {
-            color: #888;
-        }
-
-        .newsletter-form button {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(180deg, rgba(83, 88, 69, 0.85) 0%, rgba(59, 63, 48, 0.9) 100%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--color-white);
-            padding: 12px 24px;
-            border-radius: 24px;
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            box-shadow: 
-                0 4px 15px rgba(83, 88, 69, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
         }
 
-        .newsletter-form button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 
-                0 8px 25px rgba(83, 88, 69, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            background: linear-gradient(180deg, rgba(83, 88, 69, 0.95) 0%, rgba(59, 63, 48, 0.98) 100%);
+        .social-links-minimal a:hover {
+            background: var(--color-gold);
+            color: var(--color-footer-bg);
+            border-color: var(--color-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
         }
 
-        .footer-divider {
-            border: none;
-            height: 1px;
-            background-color: #333;
-            margin-bottom: 30px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-        }
-
-        .credit-link {
-            display: inline-block;
-            color: var(--color-footer-text);
+        .footer-bottom-minimal {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             font-size: 13px;
-            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+            width: 100%;
         }
 
-        .credit-link:hover {
-            color: var(--color-white);
+        .footer-bottom-minimal a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s;
+            text-decoration: none;
         }
 
-        .copyright {
-            font-size: 12px;
-            color: #666;
+        .footer-bottom-minimal a:hover {
+            color: var(--color-gold);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .legal-links span {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .floating-lang-island {
+            display: none;
         }
 
         /* RESPONSIVE */
@@ -1742,10 +1745,16 @@
         <div class="island-content-row">
             <!-- Menú de navegación atajos -->
             <div class="nav-menu">
-                <a href="#carta" data-key="nav_carta">Carta</a>
-                <a href="#contacto" data-key="nav_contacto">Contacto</a>
+                <a href="#carta" class="island-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span data-key="nav_carta">Carta</span>
+                </a>
+                <a href="#contacto" class="island-nav-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span data-key="nav_contacto">Contacto</span>
+                </a>
                 <a href="#" id="island-write-review-trigger" class="island-write-review-trigger-btn">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                         <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                     </svg>
@@ -2155,67 +2164,58 @@
 
     <!-- 8. FOOTER -->
     <footer class="footer reveal">
-        <div class="container">
-            <div class="footer-grid">
-                <!-- Columna 1 -->
-                <div class="footer-col stagger-item">
-                    <div class="footer-logo">Korta Taberna</div>
-                    <p class="footer-tagline" data-key="footer_tagline">Pintxos y tradición desde Zumarraga</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" aria-label="Facebook">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                        </a>
-                    </div>
-                </div>
+        <!-- Interactive Marquee -->
+        <div class="footer-marquee-wrap" onclick="window.location.href='#contacto'">
+            <div class="footer-marquee">
+                <span>RESERVA TU MESA</span>
+                <span>✧</span>
+                <span>KORTA TABERNA</span>
+                <span>✧</span>
+                <span>TRADICIÓN VASCA</span>
+                <span>✧</span>
+                <span>RESERVA TU MESA</span>
+                <span>✧</span>
+                <span>KORTA TABERNA</span>
+                <span>✧</span>
+                <span>TRADICIÓN VASCA</span>
+                <span>✧</span>
+                <span>RESERVA TU MESA</span>
+                <span>✧</span>
+                <span>KORTA TABERNA</span>
+                <span>✧</span>
+                <span>TRADICIÓN VASCA</span>
+                <span>✧</span>
+            </div>
+        </div>
 
-                <!-- Columna 2 -->
-                <div class="footer-col stagger-item">
-                    <h4 class="footer-title" data-key="footer_links_title">Enlaces</h4>
-                    <ul class="footer-links">
-                        <li><a href="#carta" data-key="nav_carta">Carta</a></li>
-                        <li><a href="#sobre-nosotros" data-key="nav_esencia">Sobre nosotros</a></li>
-                        <li><a href="#contacto" data-key="nav_contacto">Contacto</a></li>
-                        <li><a href="#">Aviso legal</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna 3 -->
-                <div class="footer-col stagger-item">
-                    <h4 class="footer-title" data-key="footer_contact_title">Contacto</h4>
-                    <ul class="footer-contact">
-                        <li><a href="tel:+34943715288">+34 943 71 52 88</a></li>
-                        <li>San Gregorio Kalea, 20, 20700<br>Zumarraga, Gipuzkoa</li>
-                        <li><a href="mailto:hola@kortataberna.com">hola@kortataberna.com</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna 4 -->
-                <div class="footer-col stagger-item">
-                    <h4 class="footer-title" data-key="footer_newsletter_title">Recibe nuestras novedades y eventos</h4>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
-                        <input type="email" placeholder="Tu email" data-placeholder-key="footer_newsletter_placeholder" required>
-                        <button type="submit" data-key="footer_newsletter_btn">Suscribirse</button>
-                    </form>
+        <div class="container footer-minimal">
+            <div class="footer-col-minimal">
+                <div class="footer-logo">Korta</div>
+                <div class="social-links-minimal">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="tel:+34943715288" aria-label="Teléfono">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </a>
                 </div>
             </div>
-            <hr class="footer-divider">
 
-            <div class="footer-bottom">
-                <a href="https://www.instagram.com/jakesroodriguez" target="_blank" rel="noopener noreferrer" class="credit-link">Made by @jakesroodriguez</a>
-                <p class="copyright" data-key="footer_copyright">© 2026 Korta Taberna. Todos los derechos reservados.</p>
+            <div class="footer-bottom-minimal">
+                <div class="legal-links">
+                    <a href="#">Aviso Legal</a>
+                    <span>·</span>
+                    <a href="#">Política de Privacidad</a>
+                    <span>·</span>
+                    <a href="#">Política de Cookies</a>
+                </div>
+                <span data-key="footer_copyright">© 2026 Korta Taberna. Todos los derechos reservados.</span>
             </div>
         </div>
     </footer>
-
-    <!-- Isla Flotante de Idioma (Visible en Scroll/Móvil) -->
-    <div class="floating-lang-island" id="floating-lang-island">
-        <button class="lang-btn active" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="eu">EU</button>
-    </div>
 
     <!-- Script para Interactividad: Idioma, Reseñas y Revelado con Scroll -->
     <script>
