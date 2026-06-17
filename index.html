@@ -94,7 +94,7 @@
     <style>
         /* VARIABLES Y RESET (Artisanal Basque Minimalist) */
         :root {
-            --color-bg: #faf9f5;
+            --color-bg: #f2f1ea;
             /* Elegant Warm Off-White */
             --color-surface-container: #f3f2eb;
             /* Off-white surface container */
@@ -420,12 +420,22 @@
         }
 
         /* ISLA DINÁMICA DE NAVEGACIÓN (DYNAMIC ISLAND - APPLE LIQUID GLASS) */
-        .dynamic-island {
+        .island-wrapper {
             position: fixed;
             top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
             z-index: 1000;
+        }
+
+        .dynamic-island {
+            position: relative;
+            pointer-events: auto;
+            margin: 0;
+            animation: islandPop 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
             /* True Dark Apple Liquid Glass Effect */
             background: rgba(30, 32, 20, 0.65);
@@ -444,7 +454,7 @@
             width: 220px;
             /* Compressed width */
             max-width: 90%;
-            height: 44px;
+            height: 48px;
             /* Compressed height */
             overflow: hidden;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -452,7 +462,7 @@
         }
 
         .dynamic-island.scrolled {
-            top: 12px;
+            margin-top: -8px;
             background: rgba(20, 22, 12, 0.75);
             border-color: rgba(255, 255, 255, 0.2);
             box-shadow:
@@ -465,7 +475,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            height: 30px;
+            height: 36px;
             gap: 8px;
             /* Slightly tighter gap to accommodate dividers */
         }
@@ -485,12 +495,12 @@
         }
 
         .dynamic-island .logo img {
-            height: 36px;
+            height: 50px;
             width: auto;
             object-fit: contain;
             /* Convertir la imagen a color blanco puro usando filtros CSS */
             filter: brightness(0) invert(1);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             /* Moverlo un pelín más arriba para centrarlo visualmente */
         }
 
@@ -531,13 +541,13 @@
             width: 100%;
         }
 
-        /* Expanded State: Compact, same width, expands downwards */
+        /* Expanded State: Wider with smooth Apple-like squircle shape */
         .dynamic-island.expanded {
-            width: 220px;
+            width: 300px;
             height: auto;
-            max-height: 380px;
-            padding: 14px 14px;
-            border-radius: 24px;
+            max-height: 400px;
+            padding: 20px 20px;
+            border-radius: 36px;
             cursor: default;
         }
 
@@ -559,8 +569,8 @@
             max-width: 95%;
             height: auto;
             max-height: 420px;
-            padding: 18px;
-            border-radius: 24px;
+            padding: 20px;
+            border-radius: 36px;
             cursor: default;
         }
 
@@ -911,6 +921,7 @@
             position: absolute;
             top: 0;
             left: 0;
+            filter: saturate(1.5) contrast(1.15) brightness(1.1);
         }
 
         .hero::before {
@@ -956,13 +967,32 @@
             }
         }
 
+        @keyframes islandPop {
+            0% {
+                opacity: 0;
+                transform: translateY(-40px) scale(0.1);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(10px) scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         @keyframes heroReveal {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(10px);
+                transform: translateY(80px) scale(0.1);
+                filter: blur(20px);
             }
-
+            60% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1.2);
+                filter: blur(0);
+            }
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -973,14 +1003,18 @@
         @keyframes heroLogoReveal {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5)) blur(10px);
+                transform: translateY(80px) scale(0.1);
+                filter: brightness(0) invert(1) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1)) blur(20px);
             }
-
+            60% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1.2);
+                filter: brightness(0) invert(1) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2)) blur(0);
+            }
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
-                filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5)) blur(0);
+                filter: brightness(0) invert(1) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.25)) blur(0);
             }
         }
 
@@ -988,19 +1022,18 @@
             max-width: 550px;
             width: 100%;
             height: auto;
-            margin-bottom: 12px;
-            filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5));
+            margin-bottom: 24px;
+            filter: brightness(0) invert(1) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.25));
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s;
 
             /* Entrance Animation */
             opacity: 0;
-            animation: heroLogoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.1s;
+            animation: heroLogoReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .hero-logo-img:hover {
             transform: scale(1.03);
-            filter: brightness(0) invert(1) drop-shadow(0 8px 25px rgba(255, 255, 255, 0.3));
+            filter: brightness(0) invert(1) drop-shadow(0 8px 25px rgba(255, 255, 255, 0.2));
         }
 
         .hero-line {
@@ -1009,8 +1042,7 @@
             width: 60px;
             margin: 0 auto 20px;
             opacity: 0;
-            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.3s;
+            animation: heroReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .hero-subtitle {
@@ -1021,8 +1053,7 @@
 
             /* Entrance Animation */
             opacity: 0;
-            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.5s;
+            animation: heroReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .hero-buttons {
@@ -1032,8 +1063,7 @@
 
             /* Entrance Animation */
             opacity: 0;
-            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.7s;
+            animation: heroReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .btn-primary.hero-btn {
@@ -1450,6 +1480,8 @@
             clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
             border-radius: 24px 24px 0 0;
             will-change: transform, clip-path;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%);
         }
 
         .menu-card:hover .card-img {
@@ -1513,8 +1545,10 @@
             -webkit-backdrop-filter: blur(24px);
             padding: 40px;
             box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.05);
-            text-align: center;
+            text-align: left;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
         }
 
         .info-card:hover {
@@ -1524,13 +1558,68 @@
         }
 
         .icon-wrap {
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(83, 88, 69, 0.08);
+            margin-bottom: 25px;
         }
 
         .info-card h3 {
-            font-size: 18px;
+            font-family: var(--font-heading);
+            font-size: 24px;
             font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text-main);
+        }
+
+        /* LIVE STATUS BADGE */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
             margin-bottom: 25px;
+            width: fit-content;
+            transition: var(--transition);
+        }
+        .status-badge.open {
+            background: rgba(83, 88, 69, 0.1);
+            color: #535845;
+            border: 1px solid rgba(83, 88, 69, 0.25);
+        }
+        .status-badge.closed {
+            background: rgba(212, 163, 115, 0.1);
+            color: #c59262;
+            border: 1px solid rgba(212, 163, 115, 0.25);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-badge.open .status-dot {
+            background-color: #535845;
+            box-shadow: 0 0 8px #535845;
+            animation: pulse-dot 1.8s infinite;
+        }
+        .status-badge.closed .status-dot {
+            background-color: #c59262;
+            box-shadow: 0 0 8px #c59262;
+            animation: pulse-dot 1.8s infinite;
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
         }
 
         .schedule-list {
@@ -1540,30 +1629,136 @@
 
         .schedule-list li {
             display: flex;
-            justify-content: space-between;
+            align-items: baseline;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(83, 88, 69, 0.1);
             color: var(--color-text-sec);
+            font-size: 15px;
         }
 
-        .schedule-list li:last-child {
-            border-bottom: none;
+        .schedule-list li::after {
+            content: '';
+            flex-grow: 1;
+            border-bottom: 1px dashed rgba(83, 88, 69, 0.25);
+            margin: 0 12px;
+            order: 2;
         }
 
         .schedule-list li span:first-child {
+            order: 1;
             font-weight: 500;
             color: var(--color-text-main);
         }
 
+        .schedule-list li span:last-child {
+            order: 3;
+            font-weight: 600;
+            color: var(--color-text-main);
+        }
+
         .schedule-note {
-            font-size: 12px;
-            color: #888;
+            font-size: 13px;
+            color: var(--color-text-sec);
             margin-top: 15px;
+            font-style: italic;
         }
 
         .address {
             color: var(--color-text-sec);
             line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .map-placeholder iframe {
+            filter: grayscale(1) invert(0.08) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+
+        .info-card:hover .map-placeholder iframe {
+            filter: none;
+        }
+
+        /* COLLAPSIBLE SCHEDULE */
+        .today-schedule {
+            font-size: 15px;
+            color: var(--color-text-main);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            width: 100%;
+            padding: 8px 0;
+            border-bottom: 2px solid rgba(83, 88, 69, 0.15);
+        }
+
+        .btn-schedule-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(83, 88, 69, 0.85) 0%, rgba(59, 63, 48, 0.9) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 14px 24px;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 20px;
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-schedule-toggle:hover {
+            background: linear-gradient(180deg, rgba(83, 88, 69, 0.95) 0%, rgba(59, 63, 48, 0.98) 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-schedule-toggle:active {
+            transform: translateY(0);
+        }
+
+        .btn-schedule-toggle .chevron {
+            margin-left: 8px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-schedule-toggle:hover .chevron {
+            transform: translateY(2px);
+        }
+
+        .btn-schedule-toggle.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        .btn-schedule-toggle.active:hover .chevron {
+            transform: rotate(180deg) translateY(-2px);
+        }
+
+        .schedule-collapsible {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+        }
+
+        .schedule-collapsible.open {
+            max-height: 380px;
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(83, 88, 69, 0.1);
         }
 
         /* SECCIÓN DE RESEÑAS CON SCROLL HORIZONTAL */
@@ -1634,12 +1829,12 @@
 
         .reviews-scroll-container::before {
             left: 0;
-            background: linear-gradient(to right, #fafcf5 20%, rgba(250, 252, 245, 0) 100%);
+            background: linear-gradient(to right, #f2f1ea 20%, rgba(242, 241, 234, 0) 100%);
         }
 
         .reviews-scroll-container::after {
             right: 0;
-            background: linear-gradient(to left, #fafcf5 20%, rgba(250, 252, 245, 0) 100%);
+            background: linear-gradient(to left, #f2f1ea 20%, rgba(242, 241, 234, 0) 100%);
         }
 
         /* Carrusel horizontal constante */
@@ -1651,6 +1846,15 @@
             scrollbar-width: none;
             /* Ocultar scrollbar estándar */
             -webkit-overflow-scrolling: touch;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .reviews-grid.active-drag {
+            cursor: grabbing;
+            scroll-snap-type: none;
+            scroll-behavior: auto;
         }
 
         .reviews-grid::-webkit-scrollbar {
@@ -1664,6 +1868,7 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
+            user-select: none;
             border-radius: 20px;
             padding: 32px;
             box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.03);
@@ -1794,9 +1999,9 @@
             height: 100vh;
             width: 100%;
             overflow: hidden;
-            /* Suaviza el borde inferior para conectar con el footer sin cortes rectos */
-            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%, black 100%);
-            mask-image: linear-gradient(to top, transparent 0%, black 15%, black 100%);
+            /* Suaviza los bordes superior e inferior para conectar con las secciones sin cortes bruscos */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
         }
 
         .gallery-ui-layer {
@@ -1843,10 +2048,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: transparent;
-            z-index: 100;
-            pointer-events: none;
-            /* Allows clicking images underneath if needed */
+            z-index: 4;
+            background: var(--color-bg);
+            transition: opacity 0.5s;
         }
 
         .gallery-title-slide .section-header h2 {
@@ -2122,19 +2326,22 @@
 
         @media (max-width: 768px) {
             .dynamic-island {
-                width: 90%;
-                max-width: 220px;
+                width: 220px;
+                max-width: 90%;
                 gap: 0;
             }
 
             .dynamic-island.expanded {
-                width: 90%;
-                max-width: 220px;
-                max-height: 380px;
+                width: 260px;
+                max-width: 92%;
+                max-height: 340px;
+                padding: 14px 16px;
             }
 
             .dynamic-island.expanded .island-content-row {
-                max-height: 300px;
+                max-height: 260px;
+                margin-top: 10px;
+                padding-top: 10px;
             }
 
             .dynamic-island.expanded .nav-menu {
@@ -2426,26 +2633,51 @@
         }
 
         /* CHATBOT DE GEMINI (EL TXOKO DE PATXI) - PREMIUM PREMIUM DESIGN */
+        .chat-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(26, 29, 5, 0.45);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chat-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .chat-widget {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            right: 0;
             z-index: 999;
             font-family: var(--font-body);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
 
         .chat-trigger {
-            width: 64px;
+            width: auto;
+            min-width: 64px;
             height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0 20px 0 24px;
+            border-radius: 20px 0 0 20px;
+            background: linear-gradient(135deg, rgba(83, 88, 69, 0.95) 0%, rgba(53, 58, 49, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: none;
             color: var(--color-white);
             cursor: pointer;
             box-shadow:
-                0 10px 30px rgba(83, 88, 69, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 0 0 4px rgba(83, 88, 69, 0.1);
+                -5px 10px 25px rgba(0, 0, 0, 0.35),
+                inset 1px 1px 0 rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2454,47 +2686,22 @@
         }
 
         .chat-trigger:hover {
-            transform: scale(1.08) translateY(-3px);
+            padding-left: 36px;
             box-shadow:
-                0 15px 35px rgba(83, 88, 69, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                0 0 0 6px rgba(83, 88, 69, 0.15);
+                -8px 15px 30px rgba(0, 0, 0, 0.45),
+                inset 1px 1px 0 rgba(255, 255, 255, 0.25);
+            background: linear-gradient(135deg, rgba(93, 98, 79, 0.95) 0%, rgba(63, 68, 59, 0.98) 100%);
         }
 
         .chat-trigger:active {
-            transform: scale(0.96) translateY(0);
-        }
-
-        .chat-trigger::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 50%;
-            border: 2px solid var(--color-gold);
-            opacity: 0;
-            animation: pulseRing 2.2s infinite cubic-bezier(0.25, 0, 0, 1);
-        }
-
-        @keyframes pulseRing {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: scale(1.35);
-                opacity: 0;
-            }
+            transform: translateX(0);
         }
 
         .chat-badge {
             position: absolute;
-            top: -3px;
-            right: -3px;
-            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-hover) 100%);
+            top: -6px;
+            left: -6px;
+            background: var(--color-gold);
             color: #1a1d05;
             font-size: 10px;
             font-weight: 700;
@@ -2510,14 +2717,14 @@
         .chat-window {
             position: absolute;
             bottom: 85px;
-            right: 0;
+            right: 20px;
             width: 380px;
             max-width: calc(100vw - 40px);
             height: 520px;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(83, 88, 69, 0.18);
+            border: 1px solid rgba(83, 88, 69, 0.2);
             border-radius: 28px;
             box-shadow:
                 0 20px 50px rgba(26, 29, 5, 0.15),
@@ -2526,9 +2733,10 @@
             flex-direction: column;
             overflow: hidden;
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
+            transform-origin: bottom right;
+            transform: scale(0.02, 0.4) translateY(60px);
             pointer-events: none;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.4s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .chat-window.active {
@@ -2538,13 +2746,14 @@
         }
 
         .chat-header {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+            background: rgba(26, 29, 5, 0.95);
+            backdrop-filter: blur(20px);
             color: var(--color-white);
             padding: 18px 22px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 2px solid var(--color-gold);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
@@ -2557,13 +2766,13 @@
         .chat-avatar {
             width: 42px;
             height: 42px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(214, 185, 129, 0.3);
+            color: var(--color-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -2625,6 +2834,7 @@
             flex-direction: column;
             gap: 16px;
             scroll-behavior: smooth;
+            background-color: var(--color-bg);
         }
 
         .chat-messages::-webkit-scrollbar {
@@ -2666,14 +2876,20 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background: var(--color-surface-high);
-            border: 1px solid rgba(83, 88, 69, 0.15);
+            background: var(--color-primary);
+            color: var(--color-gold);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
             flex-shrink: 0;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-avatar svg,
+        .chat-message-avatar svg {
+            display: block;
+            flex-shrink: 0;
         }
 
         .chat-message {
@@ -2837,6 +3053,150 @@
             }
         }
 
+        /* ESTILOS PREMIUM DEL CHATBOT */
+        .chat-chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px 0;
+            margin-top: 8px;
+            width: 100%;
+            align-self: flex-start;
+            animation: messageFadeIn 0.4s ease-out;
+        }
+
+        .chat-chip-btn {
+            background: rgba(83, 88, 69, 0.08);
+            border: 1px solid rgba(83, 88, 69, 0.18);
+            color: var(--color-primary);
+            padding: 8px 14px;
+            border-radius: 18px;
+            font-size: 12px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .chat-chip-btn:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(83, 88, 69, 0.15);
+        }
+
+        .chat-rec-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .chat-rec-card {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(83, 88, 69, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            max-width: 100%;
+        }
+
+        .chat-rec-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(83, 88, 69, 0.12);
+            border-color: rgba(83, 88, 69, 0.3);
+        }
+
+        .chat-rec-img {
+            width: 95px;
+            align-self: stretch;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 76%, rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 76%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .chat-rec-info {
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .chat-rec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .chat-rec-name {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--color-text-main);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-rec-price {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-gold);
+            white-space: nowrap;
+        }
+
+        .chat-rec-desc {
+            font-size: 11.5px;
+            color: var(--color-text-sec);
+            line-height: 1.4;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .chat-rec-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .chat-rec-tag {
+            font-size: 9.5px;
+            font-weight: 600;
+            background: rgba(212, 163, 115, 0.15);
+            color: #b58050;
+            padding: 2px 6px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .chat-search-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--color-text-sec);
+            font-style: italic;
+        }
+
+        .search-loader {
+            opacity: 0.85;
+        }
+
         /* FULLSCREEN GALLERY */
         .fullscreen-gallery {
             position: fixed;
@@ -2949,11 +3309,12 @@
 <body>
 
     <!-- CABECERA ISLA DINÁMICA FLOTANTE (DYNAMIC ISLAND) -->
+    <div class="island-wrapper">
     <nav class="dynamic-island" id="header">
         <!-- Fila Principal (Comprimida) -->
         <div class="island-main-row">
             <a href="#" class="logo">
-                <img src="ChatGPT Image 2 jun 2026, 21_40_03.png"
+                <img src="kesitto ativoo.png"
                     alt="Korta Taberna - Pintxos y cocina vasca en Zumarraga / Pintxoak eta euskal sukaldaritza Zumarragan">
             </a>
 
@@ -3079,6 +3440,7 @@
             </div>
         </div>
     </nav>
+    </div>
 
     <!-- 2. SECCIÓN HERO -->
     <section class="hero" id="inicio">
@@ -3089,7 +3451,7 @@
         </div>
         <div class="hero-content">
             <h1 class="sr-only" data-key="hero_h1">Korta Taberna | Pintxos y cocina vasca tradicional en Zumarraga</h1>
-            <img src="ChatGPT Image 2 jun 2026, 21_40_03.png" alt="Korta Taberna - Logo Oficial / Logo Ofiziala"
+            <img src="kesitto ativoo.png" alt="Korta Taberna - Logo Oficial / Logo Ofiziala"
                 class="hero-logo-img">
             <p class="hero-subtitle" data-key="hero_subtitle">Pintxos, vinos y tradición desde el corazón de Gipuzkoa
             </p>
@@ -3279,12 +3641,25 @@
                         </svg>
                     </div>
                     <h3 data-key="info_hours_title">Horario de apertura</h3>
-                    <ul class="schedule-list">
-                        <li><span data-key="info_hours_tue_sat">Martes a sábado:</span> <span>09:00 – 22:30</span></li>
-                        <li><span data-key="info_hours_sun">Domingo:</span> <span>10:00 – 16:00</span></li>
-                        <li><span data-key="info_hours_mon">Lunes:</span> <span
-                                data-key="info_hours_closed">cerrado</span></li>
-                    </ul>
+                    <div id="status-badge" class="status-badge"></div>
+                    <div id="today-schedule" class="today-schedule"></div>
+                    <button type="button" class="btn-schedule-toggle" id="btn-schedule-toggle">
+                        <span data-key="btn_view_full_schedule">Ver horario completo</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="schedule-collapsible" id="schedule-collapsible">
+                        <ul class="schedule-list">
+                            <li><span data-key="day_mon">Lunes:</span> <span>09:00 – 22:30</span></li>
+                            <li><span data-key="day_tue">Martes:</span> <span>09:00 – 22:30</span></li>
+                            <li><span data-key="day_wed">Miércoles:</span> <span>09:00 – 22:30</span></li>
+                            <li><span data-key="day_thu">Jueves:</span> <span>09:00 – 22:30</span></li>
+                            <li><span data-key="day_fri">Viernes:</span> <span>09:00 – 22:30</span></li>
+                            <li><span data-key="day_sat">Sábado:</span> <span>10:30 – 00:30</span></li>
+                            <li><span data-key="day_sun">Domingo:</span> <span>10:30 – 22:30</span></li>
+                        </ul>
+                    </div>
                     <p class="schedule-note" data-key="info_hours_note">Cocina ininterrumpida de 13:00 a 15:30 y de
                         20:00 a 22:00.</p>
                 </div>
@@ -3583,7 +3958,7 @@
         </div>
     </section>
     <!-- 8. FOOTER -->
-    <footer class="footer reveal">
+    <footer class="footer">
         <!-- Interactive Marquee -->
         <div class="footer-marquee-wrap" onclick="window.location.href='#contacto'">
             <div class="footer-marquee">
@@ -3611,7 +3986,7 @@
         <div class="container footer-minimal">
             <div class="footer-col-minimal">
                 <div class="footer-logo">
-                    <img src="ChatGPT Image 2 jun 2026, 21_40_03.png" alt="Korta Taberna - Zumarraga" loading="lazy">
+                    <img src="kesitto ativoo.png" alt="Korta Taberna - Zumarraga" loading="lazy">
                 </div>
 
 
@@ -3650,17 +4025,27 @@
     </footer>
 
     <!-- Chatbot de Gemini (El Txoko de Patxi) -->
+    <div class="chat-overlay" id="chat-overlay"></div>
     <div class="chat-widget" id="chat-widget">
         <button class="chat-trigger" id="chat-trigger" aria-label="Abrir chat">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <svg class="patxi-avatar-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="10" r="4" />
+                <path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                <path d="M5.5 7.5c1.5-1.5 3.5-2.5 6.5-2.5s5 1 6.5 2.5c.5.5 0 1-.5 1-1.5.5-3.5 1-6 1s-4.5-.5-6-1c-.5 0-1-.5-.5-1z" fill="currentColor" />
+                <path d="M12 5V3.5" />
             </svg>
         </button>
         <div class="chat-window" id="chat-window">
             <div class="chat-header">
                 <div class="chat-header-info">
-                    <div class="chat-avatar">🍷</div>
+                    <div class="chat-avatar">
+                        <svg class="patxi-avatar-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="10" r="4" />
+                            <path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                            <path d="M5.5 7.5c1.5-1.5 3.5-2.5 6.5-2.5s5 1 6.5 2.5c.5.5 0 1-.5 1-1.5.5-3.5 1-6 1s-4.5-.5-6-1c-.5 0-1-.5-.5-1z" fill="currentColor" />
+                            <path d="M12 5V3.5" />
+                        </svg>
+                    </div>
                     <div class="chat-title-group">
                         <span class="chat-title" id="chat-header-title">Korta Taberna</span>
                         <span class="chat-status" id="chat-header-status">En la barra</span>
@@ -3678,7 +4063,14 @@
                 <!-- Los mensajes se insertarán aquí dinámicamente -->
             </div>
             <div class="chat-typing-container" id="chat-typing-container" style="display: none;">
-                <div class="chat-message-avatar">🍷</div>
+                <div class="chat-message-avatar">
+                    <svg class="patxi-avatar-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="10" r="4" />
+                        <path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                        <path d="M5.5 7.5c1.5-1.5 3.5-2.5 6.5-2.5s5 1 6.5 2.5c.5.5 0 1-.5 1-1.5.5-3.5 1-6 1s-4.5-.5-6-1c-.5 0-1-.5-.5-1z" fill="currentColor" />
+                        <path d="M12 5V3.5" />
+                    </svg>
+                </div>
                 <div class="chat-typing" id="chat-typing">
                     <span></span>
                     <span></span>
@@ -3781,6 +4173,15 @@
                 footer_newsletter_placeholder: "Tu email",
                 footer_newsletter_btn: "Suscribirse",
                 info_section_title: "Contacto, Horario y Ubicación",
+                btn_view_full_schedule: "Ver horario completo",
+                btn_hide_full_schedule: "Ocultar horario completo",
+                day_mon: "Lunes:",
+                day_tue: "Martes:",
+                day_wed: "Miércoles:",
+                day_thu: "Jueves:",
+                day_fri: "Viernes:",
+                day_sat: "Sábado:",
+                day_sun: "Domingo:",
                 footer_copyright: "© 2026 Korta Taberna. Todos los derechos reservados."
             },
             eu: {
@@ -3850,6 +4251,15 @@
                 footer_newsletter_placeholder: "Zure emaila",
                 footer_newsletter_btn: "Harpidetu",
                 info_section_title: "Kontaktua, Ordutegia eta Kokapena",
+                btn_view_full_schedule: "Ikusi ordutegi osoa",
+                btn_hide_full_schedule: "Ezkutatu ordutegi osoa",
+                day_mon: "Astelehena:",
+                day_tue: "Asteartea:",
+                day_wed: "Asteazkena:",
+                day_thu: "Osteguna:",
+                day_fri: "Ostirala:",
+                day_sat: "Larunbata:",
+                day_sun: "Igandea:",
                 footer_copyright: "© 2026 Korta Taberna. Eskubide guztiak erreserbatuta."
             }
         };
@@ -3859,6 +4269,86 @@
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
         let currentLang = (urlLang === 'es' || urlLang === 'eu') ? urlLang : (localStorage.getItem('korta_lang') || 'eu');
+
+        function updateTodaySchedule() {
+            const todayEl = document.getElementById('today-schedule');
+            if (!todayEl) return;
+
+            const now = new Date();
+            const day = now.getDay(); // 0: Sun, 1: Mon, ..., 6: Sat
+            const lang = currentLang || 'eu';
+
+            let dayName = '';
+            let hoursStr = '';
+
+            if (lang === 'eu') {
+                const daysEu = ["Igandea", "Astelehena", "Asteartea", "Asteazkena", "Osteguna", "Ostirala", "Larunbata"];
+                dayName = daysEu[day];
+                if (day >= 1 && day <= 5) {
+                    hoursStr = "09:00 – 22:30";
+                } else if (day === 6) {
+                    hoursStr = "10:30 – 00:30";
+                } else {
+                    hoursStr = "10:30 – 22:30";
+                }
+                todayEl.innerHTML = `<strong>Gaur, ${dayName}:</strong> <span>${hoursStr}</span>`;
+            } else {
+                const daysEs = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+                dayName = daysEs[day];
+                if (day >= 1 && day <= 5) {
+                    hoursStr = "09:00 – 22:30";
+                } else if (day === 6) {
+                    hoursStr = "10:30 – 00:30";
+                } else {
+                    hoursStr = "10:30 – 22:30";
+                }
+                todayEl.innerHTML = `<strong>Hoy, ${dayName}:</strong> <span>${hoursStr}</span>`;
+            }
+        }
+
+        function updateOpenStatus() {
+            const statusBadge = document.getElementById('status-badge');
+            if (!statusBadge) return;
+
+            const now = new Date();
+            const day = now.getDay(); // 0: Sunday, 1: Monday, ..., 6: Saturday
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const currentTime = hours * 60 + minutes;
+
+            let isOpen = false;
+
+            // Monday to Friday: 09:00 - 22:30
+            if (day >= 1 && day <= 5) {
+                if (currentTime >= 9 * 60 && currentTime < 22 * 60 + 30) {
+                    isOpen = true;
+                }
+            }
+            // Saturday: 10:30 - 00:30
+            else if (day === 6) {
+                if (currentTime >= 10 * 60 + 30) { // from 10:30 to 23:59
+                    isOpen = true;
+                }
+            }
+            // Sunday: 10:30 - 22:30 (and Saturday night overflow 00:00 - 00:30)
+            else if (day === 0) {
+                if (currentTime >= 0 && currentTime < 30) { // 00:00 - 00:30
+                    isOpen = true;
+                } else if (currentTime >= 10 * 60 + 30 && currentTime < 22 * 60 + 30) {
+                    isOpen = true;
+                }
+            }
+
+            const lang = currentLang || 'eu';
+
+            if (isOpen) {
+                statusBadge.className = 'status-badge open';
+                statusBadge.innerHTML = '<span class="status-dot"></span>' + (lang === 'eu' ? 'Zabalik Orain' : 'Abierto Ahora');
+            } else {
+                statusBadge.className = 'status-badge closed';
+                statusBadge.innerHTML = '<span class="status-dot"></span>' + (lang === 'eu' ? 'Itxita Orain' : 'Cerrado Ahora');
+            }
+        }
 
         function applyLanguage(lang, updateURL = true) {
             currentLang = lang;
@@ -3932,6 +4422,8 @@
             if (chatInput) {
                 chatInput.placeholder = lang === 'eu' ? 'Galdetu Kortari...' : 'Pregunta a Korta...';
             }
+            updateOpenStatus();
+            updateTodaySchedule();
         }
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -3976,6 +4468,32 @@
 
             applyLanguage(currentLang);
             loadReviews();
+
+            // --- COMPORTAMIENTO DESPLEGABLE HORARIO ---
+            const toggleBtn = document.getElementById('btn-schedule-toggle');
+            const collapsible = document.getElementById('schedule-collapsible');
+            if (toggleBtn && collapsible) {
+                toggleBtn.addEventListener('click', () => {
+                    const isOpen = collapsible.classList.contains('open');
+                    if (isOpen) {
+                        collapsible.classList.remove('open');
+                        toggleBtn.classList.remove('active');
+                        const labelSpan = toggleBtn.querySelector('span');
+                        if (labelSpan) {
+                            labelSpan.setAttribute('data-key', 'btn_view_full_schedule');
+                            labelSpan.textContent = currentLang === 'eu' ? 'Ikusi ordutegi osoa' : 'Ver horario completo';
+                        }
+                    } else {
+                        collapsible.classList.add('open');
+                        toggleBtn.classList.add('active');
+                        const labelSpan = toggleBtn.querySelector('span');
+                        if (labelSpan) {
+                            labelSpan.setAttribute('data-key', 'btn_hide_full_schedule');
+                            labelSpan.textContent = currentLang === 'eu' ? 'Ezkutatu ordutegi osoa' : 'Ocultar horario completo';
+                        }
+                    }
+                });
+            }
 
             // --- SUAVIZAR BUCLE DE VIDEO HERO ---
             const heroVideo = document.querySelector('.hero-bg video');
@@ -4030,9 +4548,39 @@
             const container = document.getElementById('reviews-container');
 
             container.addEventListener('mouseenter', () => isReviewsHovered = true);
-            container.addEventListener('mouseleave', () => isReviewsHovered = false);
+            container.addEventListener('mouseleave', () => {
+                isReviewsHovered = false;
+                isDown = false;
+                container.classList.remove('active-drag');
+            });
             container.addEventListener('touchstart', () => isReviewsHovered = true);
             container.addEventListener('touchend', () => isReviewsHovered = false);
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isReviewsHovered = true;
+                container.classList.add('active-drag');
+                startX = e.pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+                container.classList.remove('active-drag');
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                container.scrollLeft = scrollLeft - walk;
+                currentScroll = container.scrollLeft;
+            });
 
             initInfiniteScroll = function () {
                 // Eliminar clones existentes si los hay
@@ -4430,6 +4978,7 @@
         const chatInput = document.getElementById('chat-input');
         const chatMessages = document.getElementById('chat-messages');
         const chatTyping = document.getElementById('chat-typing');
+        const chatOverlay = document.getElementById('chat-overlay');
 
         let chatHistory = JSON.parse(localStorage.getItem('korta_chat_history')) || [];
         let lastChatIntent = null;
@@ -4437,7 +4986,12 @@
         chatTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
             chatWindow.classList.toggle('active');
-            if (chatWindow.classList.contains('active')) {
+            const isActive = chatWindow.classList.contains('active');
+            if (chatOverlay) {
+                if (isActive) chatOverlay.classList.add('active');
+                else chatOverlay.classList.remove('active');
+            }
+            if (isActive) {
                 if (chatMessages.children.length === 0) {
                     if (chatHistory.length > 0) {
                         chatHistory.forEach(msg => addMessage(msg.text, msg.sender, false));
@@ -4452,19 +5006,60 @@
         chatCloseBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             chatWindow.classList.remove('active');
+            if (chatOverlay) chatOverlay.classList.remove('active');
         });
 
         document.addEventListener('click', (e) => {
             if (chatWidget && !chatWidget.contains(e.target)) {
                 chatWindow.classList.remove('active');
+                if (chatOverlay) chatOverlay.classList.remove('active');
             }
         });
+
+        function renderSuggestionChips(chipsList) {
+            const existingChips = chatMessages.querySelector('.chat-chips-container');
+            if (existingChips) existingChips.remove();
+
+            if (!chipsList || chipsList.length === 0) return;
+
+            const container = document.createElement('div');
+            container.className = 'chat-chips-container';
+
+            chipsList.forEach(chip => {
+                const btn = document.createElement('button');
+                btn.className = 'chat-chip-btn';
+                btn.innerHTML = chip.label;
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    chatInput.value = chip.value;
+                    chatForm.dispatchEvent(new Event('submit'));
+                });
+                container.appendChild(btn);
+            });
+
+            chatMessages.appendChild(container);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
 
         function showWelcomeMessage() {
             const welcomeText = currentLang === 'eu'
                 ? 'Aupa! Kortako tabernaria naiz. Zer jarriko dizut edo nola lagun zaitzaket gure tabernari buruz? Galdetu karta, ordutegiak, erreserbak edota nahi duzuna.'
                 : '¡Aupa! Soy el tabernero de Korta. ¿Qué te pongo o en qué te puedo ayudar sobre nuestra taberna? Pregúntame por la carta, los horarios, reservas o lo que quieras.';
             addMessage(welcomeText, 'bot');
+            
+            const startChips = currentLang === 'eu' ? [
+                { label: "Gomendatu jatekoa", value: "Gomendatu jateko zerbait" },
+                { label: "Edariak", value: "Zer edateko gomendatzen duzu?" },
+                { label: "Erreserbatu", value: "Mahaia erreserbatu nahi dut" },
+                { label: "Ordutegia", value: "Zein da ordutegia?" }
+            ] : [
+                { label: "Recomendar comida", value: "Recomiéndame algo de comer" },
+                { label: "Bebidas", value: "Recomiéndame algo de beber" },
+                { label: "Reservar", value: "Quiero reservar mesa" },
+                { label: "Horarios", value: "Horarios del bar" }
+            ];
+            renderSuggestionChips(startChips);
         }
 
         function addMessage(text, sender, save = true) {
@@ -4474,13 +5069,24 @@
             if (sender === 'bot') {
                 const avatar = document.createElement('div');
                 avatar.className = 'chat-message-avatar';
-                avatar.textContent = '🍷';
+                avatar.innerHTML = `
+                    <svg class="patxi-avatar-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="10" r="4" />
+                        <path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                        <path d="M5.5 7.5c1.5-1.5 3.5-2.5 6.5-2.5s5 1 6.5 2.5c.5.5 0 1-.5 1-1.5.5-3.5 1-6 1s-4.5-.5-6-1c-.5 0-1-.5-.5-1z" fill="currentColor" />
+                        <path d="M12 5V3.5" />
+                    </svg>
+                `;
                 msgContainer.appendChild(avatar);
             }
 
             const msg = document.createElement('div');
             msg.className = `chat-message ${sender}`;
-            msg.textContent = text;
+            if (sender === 'bot') {
+                msg.innerHTML = text;
+            } else {
+                msg.textContent = text;
+            }
             msgContainer.appendChild(msg);
 
             chatMessages.appendChild(msgContainer);
@@ -4488,7 +5094,6 @@
 
             if (save) {
                 chatHistory.push({ text, sender });
-                // Limitar el historial a los últimos 50 mensajes para no llenar el localStorage
                 if (chatHistory.length > 50) chatHistory = chatHistory.slice(chatHistory.length - 50);
                 localStorage.setItem('korta_chat_history', JSON.stringify(chatHistory));
             }
@@ -4502,24 +5107,60 @@
             addMessage(text, 'user');
             chatInput.value = '';
 
-            const typingContainer = document.getElementById('chat-typing-container') || chatTyping;
-            typingContainer.style.display = 'flex';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            const existingChips = chatMessages.querySelector('.chat-chips-container');
+            if (existingChips) existingChips.remove();
 
-            setTimeout(() => {
-                typingContainer.style.display = 'none';
-                const response = getBotResponse(text, currentLang);
-                addMessage(response, 'bot');
-            }, 1000 + Math.random() * 800);
+            const botResult = getBotResponse(text, currentLang);
+
+            if (botResult.type === 'search') {
+                const typingContainer = document.getElementById('chat-typing-container') || chatTyping;
+                if (typingContainer) typingContainer.style.display = 'none';
+
+                const loader = document.createElement('div');
+                loader.className = 'chat-message-container bot search-loader';
+                loader.innerHTML = `
+                    <div class="chat-message-avatar">
+                        <svg class="patxi-avatar-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="10" r="4" />
+                            <path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                            <path d="M5.5 7.5c1.5-1.5 3.5-2.5 6.5-2.5s5 1 6.5 2.5c.5.5 0 1-.5 1-1.5.5-3.5 1-6 1s-4.5-.5-6-1c-.5 0-1-.5-.5-1z" fill="currentColor" />
+                            <path d="M12 5V3.5" />
+                        </svg>
+                    </div>
+                    <div class="chat-message bot chat-search-status">
+                        <span>🔍</span> ${currentLang === 'eu' ? 'Google-n bilatzen:' : 'Buscando en Google:'} "<em>${botResult.query}</em>"...
+                    </div>
+                `;
+                chatMessages.appendChild(loader);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                setTimeout(() => {
+                    loader.remove();
+                    addMessage(botResult.text, 'bot');
+                    if (botResult.suggestedChips && botResult.suggestedChips.length > 0) {
+                        renderSuggestionChips(botResult.suggestedChips);
+                    }
+                }, 1400 + Math.random() * 400);
+            } else {
+                const typingContainer = document.getElementById('chat-typing-container') || chatTyping;
+                typingContainer.style.display = 'flex';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                setTimeout(() => {
+                    typingContainer.style.display = 'none';
+                    addMessage(botResult.text, 'bot');
+                    if (botResult.suggestedChips && botResult.suggestedChips.length > 0) {
+                        renderSuggestionChips(botResult.suggestedChips);
+                    }
+                }, 1000 + Math.random() * 800);
+            }
         });
 
         function getBotResponse(input, lang) {
-            // Normalizar el input: convertir a minúsculas y quitar tildes/acentos
             const normalizeStr = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const text = normalizeStr(input);
             const words = text.split(/[^a-z0-9ñ]/).filter(Boolean);
 
-            // Robust automatic language detection based on clean word matching and stem prefixes
             const basqueStems = [
                 "kaixo", "aupa", "epa", "iepa", "zer", "nola", "non", "zenbat", "balio", "kart",
                 "erreserb", "mahai", "orduteg", "irek", "itx", "helbid", "ardo", "edar", "esker",
@@ -4549,14 +5190,12 @@
             let esCount = 0;
 
             words.forEach(word => {
-                // Check Basque stems
                 const matchesEu = basqueStems.some(stem => {
                     if (stem.length <= 2) return word === stem;
                     return word.startsWith(stem);
                 });
                 if (matchesEu) euCount++;
 
-                // Check Spanish stems
                 const matchesEs = spanishStems.some(stem => {
                     if (stem.length <= 2) return word === stem;
                     return word.startsWith(stem);
@@ -4572,10 +5211,8 @@
                 es: {
                     greetings: "¡Aupa! Qué alegría tenerte por aquí. Yo estoy estupendamente, listo en la barra del Korta. ¿Tú qué tal? ¿Listos para tomar algo o tienes alguna duda?",
                     reservation: "¡Claro! Puedes reservar tu mesa llamándonos directamente al 943 71 52 88, o usando el botón de 'Reservar' en la barra superior. ¡Te guardamos el mejor sitio!",
-                    menu: "Nuestra especialidad son los pintxos del día. Tienes que probar sí o sí la tortilla de bacalao, el pintxo de txangurro y, si vienes con hambre, una buena txuleta a la brasa. ¡Se te va a hacer la boca agua! Si quieres ver la carta completa con los bocadillos y sus precios, haz clic en el botón 'Ver nuestra carta' en la parte superior.",
                     hours: "Abrimos de martes a sábado de 09:00 a 22:30, y los domingos de 10:00 a 16:00. Los lunes nos tomamos un descanso para recargar las pilas. ¡La cocina está lista para ti de 13:00 a 15:30 y de 20:00 a 22:00!",
                     location: "Estamos en pleno corazón de Zumarraga, en San Gregorio Kalea, 20. ¡No tiene pérdida! Tienes un mapa interactivo aquí mismo en la web para guiarte.",
-                    drinks: "¡Ah, el buen beber! Tenemos una selección de vinos tintos de Rioja Alavesa, sidra local de Gipuzkoa y, por supuesto, un Txakoli fresco que entra solo. ¿Te sirvo una copa?",
                     prices: "Dime de qué producto quieres saber el precio (por ejemplo: 'precio del bocadillo', 'cuánto cuestan los pintxos' o 'bebidas') y te lo digo.",
                     history: "Llevamos al pie del cañón desde 1985. Korta Taberna nació como un sueño familiar para ofrecer lo mejor de nuestra tierra, y aquí seguimos con la misma ilusión y las recetas tradicionales vascas.",
                     patxi: "¡Aupa! Soy el dueño y tabernero del Korta. Llevo sirviendo copas, preparando pintxos y charlando con los clientes desde hace un montón de años. Para mí, esta taberna y su gente lo son todo. ¿Qué te pongo o en qué te puedo ayudar hoy?",
@@ -4615,13 +5252,12 @@
 
             const db = responses[detectedLang];
 
-            // Listas de intenciones sin tildes para hacer match con el texto normalizado
             const intents = {
                 greetings: ["hola", "aupa", "kaixo", "buenas", "egon", "egun on", "arratsalde on", "gabon", "buenos dias", "buenas tardes", "buenas noches", "que tal", "como estas", "como esta", "zer moduz", "nola zaude", "nola zaudete", "epa", "iepa", "hey"],
                 thanks: ["gracias", "esker", "merci", "thank", "dank", "eskerrik", "mila esker"],
                 goodbye: ["agur", "adios", "adio", "chao", "gero arte", "bye", "hasta luego", "nos vemos"],
                 reservation: ["reserv", "reserva", "mesa", "mahai", "erreserb", "llamar", "tel", "telefono", "contacto", "kontakt", "deitu", "sitio", "hueco"],
-                menu: ["cart", "carta", "kart", "comer", "pintxo", "tortill", "tortilla", "txulet", "txuleta", "txangurr", "txangurro", "comid", "comida", "plato", "menu", "menua", "janar", "janari", "jan", "jateko", "cena", "cenar", "afal", "bokadil", "bokat", "bocadill", "bocata", "desayun", "desayuno", "gosar", "racion", "plater", "afar", "bazkar", "almuerz", "jaki", "gose", "hambre", "gomenda", "gomendatzen", "gomendio", "recomiend", "recomend"],
+                menu: ["cart", "carta", "kart", "comer", "pintxo", "tortill", "tortilla", "txulet", "txuleta", "txangurr", "txangurro", "comid", "comida", "plato", "menu", "menua", "janar", "janari", "jan", "jateko", "cena", "cenar", "afal", "bokadil", "bokat", "bocadill", "bocata", "desayun", "desayuno", "gosar", "racion", "plater", "afar", "bazkar", "almuerz", "jaki", "gose", "hambre", "gomenda", "gomendatzen", "gomendio", "recomiend", "recomendar", "suger", "sugier", "aconsej"],
                 prices: ["prez", "precio", "prec", "zenbat", "balio", "cuest", "cuesta", "cuant", "cuanto", "kostat", "diner", "dinero", "diru", "euro", "salneurr", "cost", "tarif", "caro", "barato", "garesti", "merke", "valen", "vale"],
                 hours: ["horar", "horario", "hora", "abiert", "abierto", "cerrad", "cerrado", "orduteg", "ordutegi", "irek", "itxi", "abre", "cierra", "cuando abre", "asteburu", "semana", "diario", "dias", "egun", "zabal", "fines de semana"],
                 location: ["donde", "como llegar", "direc", "direccion", "ubic", "ubicacion", "nola iritsi", "nola heldu", "helbid", "helbidea", "zumarraga", "gipuzkoa", "sitio", "toki", "non dago", "kale", "calle", "mapa", "kokap", "donde estais"],
@@ -4632,77 +5268,261 @@
                 barGeneral: ["bar", "tabern", "taberna", "korta", "local", "txoko", "jatetxe", "restaur", "zer da", "que es"]
             };
 
-            // Calculate scores for each intent
             const scores = {};
             for (const [intentName, keywords] of Object.entries(intents)) {
                 let score = 0;
                 keywords.forEach(key => {
                     const normalizedKey = normalizeStr(key);
-                    // Match con boundaries (\b) para palabras completas (peso 3)
                     const regexBoundary = new RegExp('\\b' + normalizedKey + '\\b', 'i');
-                    if (regexBoundary.test(text)) {
-                        score += 3;
-                    }
-                    // Match de prefijos o substrings (peso 1)
-                    else if (text.includes(normalizedKey)) {
-                        // Evitar que letras cortas matcheen a lo loco (ej: "es")
-                        if (normalizedKey.length > 3) {
-                            score += 1;
-                        }
-                    }
+                    if (regexBoundary.test(text)) score += 3;
+                    else if (text.includes(normalizedKey) && normalizedKey.length > 3) score += 1;
                 });
                 scores[intentName] = score;
             }
 
-            // Encontrar la intención con la máxima puntuación
             let maxScore = 0;
             let bestIntent = null;
             for (const [intentName, score] of Object.entries(scores)) {
-                // Dar prioridad a 'prices' en caso de empate
                 if (score > maxScore || (score === maxScore && intentName === 'prices')) {
                     maxScore = score;
                     bestIntent = intentName;
                 }
             }
 
-            // Memoria contextual: si la puntuación es baja pero veníamos hablando de precios
             if (maxScore < 3 && lastChatIntent === 'prices') {
                 if (scores['menu'] > 0 || scores['drinks'] > 0 || text.includes('y') || text.includes('eta') || text.includes('del')) {
                     bestIntent = 'prices';
-                    maxScore = 3; // Forzar que pase el threshold
+                    maxScore = 3;
                 }
             }
 
-            // Threshold: Necesitamos una puntuación de al menos 1 para no caer en fallback
+            const menuItems = [
+                { id: "txangurro", name: detectedLang === 'eu' ? "Txangurro Pintxoa" : "Pintxo de Txangurro", desc: detectedLang === 'eu' ? "Txangurro xehatua ogi txigortuaren gainean, alioli arinaz gratinatua." : "Centollo desmigado sobre pan de cristal, gratinado con alioli suave.", type: "salado", allergens: ["gluten", "huevo", "marisco"], price: "4,50€", img: "Gemini_Generated_Image_bzv96ybzv96ybzv9.png", tags: detectedLang === 'eu' ? ["berezitasuna", "itsasoa"] : ["especialidad", "mar"] },
+                { id: "anchoa", name: detectedLang === 'eu' ? "Kantauriko Antxoa Tosta" : "Tosta de Anchoa del Cantábrico", desc: detectedLang === 'eu' ? "Baxurako antxoa tomate natural errea eta oliba olio birjina estrarekin." : "Anchoa de bajura con tomate natural asado y aceite de oliva virgen extra.", type: "salado", allergens: ["gluten", "pescado"], price: "4,00€", img: "Gemini_Generated_Image_5dny705dny705dny.png", tags: detectedLang === 'eu' ? ["itsasoa", "tosta"] : ["mar", "tosta"] },
+                { id: "tortilla_bacalao", name: detectedLang === 'eu' ? "Bakailao Tortilla" : "Tortilla de Bacalao", desc: detectedLang === 'eu' ? "Mamitsua eta bere puntuan, bakailao gatzgabetuarekin eta piper berdearekin." : "Jugosa y en su punto, con bacalao desalado y pimiento verde.", type: "salado", allergens: ["huevo", "pescado"], price: "5,20€", img: "https://images.unsplash.com/photo-1606850051065-276906666874?q=80&w=1964&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["ospetsua", "klasikoa"] : ["popular", "clasico"] },
+                { id: "txuleta", name: detectedLang === 'eu' ? "Txuleta Parrillan" : "Txuleta a la Brasa", desc: detectedLang === 'eu' ? "Behi zaharren haragi ondua, pikillo piperrekin zerbitzatua." : "Carne madurada de vaca vieja, servida con pimientos de piquillo.", type: "salado", allergens: [], price: "18,00€", img: "https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=1931&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["haragia", "parrila"] : ["carne", "brasa"] },
+                { id: "croquetas", name: detectedLang === 'eu' ? "Etxeko Urdaiazpiko Kroketak" : "Croquetas Caseras de Jamón", desc: detectedLang === 'eu' ? "Krematsuak eta gozoak, urdaiazpiko iberikoarekin." : "Cremosas y sabrosas, con jamón ibérico.", type: "salado", allergens: ["gluten", "lacteos", "huevo"], price: "6,00€", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["krematsua", "klasikoa"] : ["cremosas", "clasico"] },
+                { id: "padron", name: detectedLang === 'eu' ? "Padrongo Piperrak" : "Pimientos de Padrón", desc: detectedLang === 'eu' ? "Frijituak itsas gatza ezkatarekin." : "Fritos con sal marina.", type: "salado", allergens: [], price: "5,00€", img: "https://images.unsplash.com/photo-1560624052-449f5ddf0c31?q=80&w=1769&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["beganoa", "begetarianoa"] : ["vegano", "vegetariano"] },
+                { id: "tarta_queso", name: detectedLang === 'eu' ? "Gazta Tarta Labean" : "Tarta de Queso Horneada", desc: detectedLang === 'eu' ? "Krematsua eta labean txigortua." : "Cremosa y tostada al horno.", type: "dulce", allergens: ["gluten", "lacteos", "huevo"], price: "5,50€", img: "https://images.unsplash.com/photo-1524351199679-46cddf530c04?q=80&w=600&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["postrea", "gozoa"] : ["postre", "dulce"] }
+            ];
+
+            const drinkItems = [
+                { id: "txakoli", name: detectedLang === 'eu' ? "Txakoli Korta" : "Txakoli de la Casa", desc: detectedLang === 'eu' ? "Euskal ardo zuri fresko eta bizia." : "Vino blanco vasco fresco y alegre.", price: "2,50€", img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=600&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["zuria", "freskoa"] : ["blanco", "fresco"] },
+                { id: "sidra", name: detectedLang === 'eu' ? "Sagardo Naturala" : "Sidra Natural", desc: detectedLang === 'eu' ? "Gipuzkoako sagardo tradizionala." : "Sidra tradicional de Gipuzkoa.", price: "2,00€", img: "https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?q=80&w=600&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["sagardoa"] : ["sidra"] },
+                { id: "rioja", name: detectedLang === 'eu' ? "Arabako Errioxako Ardoa" : "Vino de Rioja Alavesa", desc: detectedLang === 'eu' ? "Ardo beltz ondua, bikaina." : "Vino tinto criado, excelente cuerpo.", price: "2,50€", img: "https://images.unsplash.com/photo-1528822830846-8111cc38b47e?q=80&w=600&auto=format&fit=crop", tags: detectedLang === 'eu' ? ["beltza"] : ["tinto"] }
+            ];
+
+            const getChipsForIntent = (intentName) => {
+                const isEu = detectedLang === 'eu';
+                if (intentName === 'menu' || intentName === 'recommendation') {
+                    return isEu ? [
+                        { label: "Glutenik gabe", value: "Glutenik gabeko zerbait nahi dut" },
+                        { label: "Laktosarik gabe", value: "Esnerik gabeko zerbait gomendatu" },
+                        { label: "Zerbait gozoa", value: "Zerbait gozoa nahi dut" },
+                        { label: "Erreserbatu", value: "Mahaia erreserbatu nahi dut" }
+                    ] : [
+                        { label: "Sin Gluten", value: "Quiero algo sin gluten" },
+                        { label: "Sin Lactosa", value: "Recomiéndame algo sin lactosa" },
+                        { label: "Algo dulce", value: "Quiero algo dulce" },
+                        { label: "Reservar mesa", value: "Quiero reservar mesa" }
+                    ];
+                }
+                if (intentName === 'drinks') {
+                    return isEu ? [
+                        { label: "Jateko zerbait", value: "Gomendatu jateko zerbait" },
+                        { label: "Deitu", value: "Deitu tabernara" }
+                    ] : [
+                        { label: "Algo para comer", value: "Recomiéndame algo de comer" },
+                        { label: "Llamar", value: "Llamar a la taberna" }
+                    ];
+                }
+                return isEu ? [
+                    { label: "Gomendatu jatekoa", value: "Gomendatu jateko zerbait" },
+                    { label: "Zer edan?", value: "Zer edateko gomendatzen duzu?" },
+                    { label: "Erreserbatu", value: "Mahaia erreserbatu nahi dut" }
+                ] : [
+                    { label: "Recomendar comida", value: "Recomiéndame algo de comer" },
+                    { label: "¿Qué beber?", value: "Recomiéndame algo de beber" },
+                    { label: "Reservar", value: "Quiero reservar mesa" }
+                ];
+            };
+
+            const allergensMap = {
+                gluten: ["gluten", "trigo", "celiac", "sin g", "glutenik gabe", "zeliako", "gari"],
+                lacteos: ["leche", "lacte", "lactos", "queso", "esne", "gazta", "sin l", "laktosik gabe"],
+                huevo: ["huevo", "arrautz", "sin h", "arrautzarik gabe"],
+                pescado: ["pescado", "arrain", "sin p", "arrainik gabe"],
+                marisco: ["marisco", "crustac", "sin m", "itsaski", "itsaskirik gabe"]
+            };
+            
+            const forbiddenAllergens = Object.keys(allergensMap).filter(a => allergensMap[a].some(kw => text.includes(kw)));
+            
+            // Preferencia por salado / dulce
+            const isSalty = ["salado", "gazi", "comida", "comer", "cenar", "pintxo", "racion", "bocata", "bocadillo"].some(kw => text.includes(kw));
+            const isSweet = ["dulce", "gozo", "postre", "tarta"].some(kw => text.includes(kw));
+
+            // Formateador de tarjetas horizontales premium
+            const formatRecommendationCards = (itemsList) => {
+                if (itemsList.length === 0) {
+                    return `<p>${detectedLang === 'eu' ? 'Barkatu, ez daukagu zure irizpideekin bat datorren platerik barra honetan momentu honetan.' : 'Lo sentimos, no tenemos ningún plato que coincida exactamente con tus criterios en la barra en este momento.'}</p>`;
+                }
+                
+                let html = `<p style="margin-bottom:8px;">${detectedLang === 'eu' ? 'Hona hemen gure gomendioak:' : 'Aquí tienes nuestras sugerencias:'}</p>`;
+                html += `<div class="chat-rec-list">`;
+                itemsList.forEach(item => {
+                    // Generar tags de alérgenos que NO tiene para destacar
+                    let tagsHtml = '';
+                    const isEu = detectedLang === 'eu';
+                    
+                    if (!item.allergens.includes('gluten')) {
+                        tagsHtml += `<span class="chat-rec-tag" style="background:rgba(16,185,129,0.15);color:#10b981;">${isEu ? 'Glutenik gabe' : 'Sin Gluten'}</span>`;
+                    }
+                    if (!item.allergens.includes('lacteos')) {
+                        tagsHtml += `<span class="chat-rec-tag" style="background:rgba(16,185,129,0.15);color:#10b981;">${isEu ? 'Laktosarik gabe' : 'Sin Lactosa'}</span>`;
+                    }
+                    item.tags.forEach(t => {
+                        tagsHtml += `<span class="chat-rec-tag">${t}</span>`;
+                    });
+
+                    html += `
+                        <div class="chat-rec-card">
+                            <div class="chat-rec-img" style="background-image: url('${item.img}');"></div>
+                            <div class="chat-rec-info">
+                                <div class="chat-rec-header">
+                                    <div class="chat-rec-name">${item.name}</div>
+                                    <div class="chat-rec-price">${item.price}</div>
+                                </div>
+                                <div class="chat-rec-desc">${item.desc}</div>
+                                <div class="chat-rec-tags">${tagsHtml}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                return html;
+            };
+
+            const isRec = ["recomiend", "aconsej", "suger", "sugier", "carta", "plato", "jan", "afal", "comida", "comer", "cena", "cenar"].some(s => text.includes(s)) || forbiddenAllergens.length > 0 || isSalty || isSweet;
+            
+            if (isRec) {
+                let filtered = menuItems.filter(item => !item.allergens.some(a => forbiddenAllergens.includes(a)));
+                if (isSalty) {
+                    filtered = filtered.filter(item => item.type === 'salado');
+                } else if (isSweet) {
+                    filtered = filtered.filter(item => item.type === 'dulce');
+                }
+                
+                return { 
+                    type: 'recommendation', 
+                    text: formatRecommendationCards(filtered), 
+                    suggestedChips: getChipsForIntent('recommendation') 
+                };
+            }
+
+            // Google Search Simulation checks
+            const searchKeywords = ["busca", "google", "fotos", "imagen", "search", "zer da", "que es", "argazki", "irudi", "pantaila", "web"];
+            const isSearchQuery = searchKeywords.some(keyword => text.includes(keyword)) || (maxScore === 0 && text.trim().length > 3);
+            
+            if (isSearchQuery) {
+                // Decidir qué imágenes de Google mostrar según la temática
+                let queryTitle = input;
+                let queryDesc = detectedLang === 'eu' ? "Google-ko bilaketaren emaitza lokala." : "Resultado de búsqueda local de Google.";
+                let imgUrl = "foto_principal.png";
+
+                if (text.includes("zumarraga") || text.includes("gipuzkoa") || text.includes("herri") || text.includes("pueblo")) {
+                    queryTitle = detectedLang === 'eu' ? "Zumarragako inguruak (Beloki)" : "Alrededores de Zumarraga (Monte Beloki)";
+                    queryDesc = detectedLang === 'eu' ? "Urola Garaia eskualdeko mendi eta paraje berde ikusgarriak." : "Espectaculares montañas y parajes verdes de la comarca del Alto Urola.";
+                    imgUrl = "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=600&auto=format&fit=crop";
+                } else if (text.includes("ardo") || text.includes("vino") || text.includes("txakoli") || text.includes("sidra") || text.includes("sagardo") || text.includes("edan") || text.includes("beber")) {
+                    queryTitle = detectedLang === 'eu' ? "Euskal Sagardoa eta Txakolina zerbitzatzen" : "Servido de Txakoli y Sidra Vasca";
+                    queryDesc = detectedLang === 'eu' ? "Euskal Herriko sagardotegi eta mahastietako uzta preziatua." : "La preciada cosecha de las sidrerías y viñedos de Euskal Herria.";
+                    imgUrl = "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=600&auto=format&fit=crop";
+                } else if (text.includes("pintxo") || text.includes("comida") || text.includes("janari") || text.includes("gastronomia") || text.includes("plater")) {
+                    queryTitle = detectedLang === 'eu' ? "Kortako Barra eta Pintxoak" : "Pintxos en la Barra del Korta";
+                    queryDesc = detectedLang === 'eu' ? "Egunero prestatutako euskal mokadu eta pintxo borobilak." : "Pintxos elaborados a diario y listos para degustar en la barra.";
+                    imgUrl = "Gemini_Generated_Image_ (1).png";
+                } else {
+                    queryTitle = detectedLang === 'eu' ? "Korta Taberna (Zumarraga)" : "Korta Taberna en Zumarraga";
+                    queryDesc = detectedLang === 'eu' ? "San Gregorio kalea, euskal giro herrikoia 1985etik." : "San Gregorio kalea, ambiente popular vasco desde 1985.";
+                    imgUrl = "foto_principal.png";
+                }
+
+                const searchResultHtml = `
+                    <p style="margin-bottom:8px;">${detectedLang === 'eu' ? 'Google-n bilatutako irudia:' : 'Imagen encontrada en Google:'}</p>
+                    <div class="chat-rec-list">
+                        <div class="chat-rec-card">
+                            <div class="chat-rec-img" style="background-image: url('${imgUrl}');"></div>
+                            <div class="chat-rec-info">
+                                <div class="chat-rec-header">
+                                    <div class="chat-rec-name">${queryTitle}</div>
+                                </div>
+                                <div class="chat-rec-desc">${queryDesc}</div>
+                                <div class="chat-rec-tags">
+                                    <span class="chat-rec-tag" style="background:rgba(212,163,115,0.2);color:#b58050;">Google Images</span>
+                                    <span class="chat-rec-tag">${detectedLang === 'eu' ? 'Argazkia' : 'Foto'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                return { 
+                    type: 'search', 
+                    query: input, 
+                    text: searchResultHtml, 
+                    suggestedChips: getChipsForIntent('search') 
+                };
+            }
+
             if (bestIntent && maxScore > 0) {
-                lastChatIntent = bestIntent; // Guardar el contexto actual
+                lastChatIntent = bestIntent;
+
+                if (bestIntent === 'drinks') {
+                    return { 
+                        type: 'recommendation', 
+                        text: formatRecommendationCards(drinkItems), 
+                        suggestedChips: getChipsForIntent('drinks') 
+                    };
+                }
 
                 if (bestIntent === 'prices') {
                     const isEu = detectedLang === 'eu';
+                    let priceText = "";
                     if (text.includes('boca') || text.includes('bokata') || text.includes('sandwich')) {
-                        return isEu ? "Bokatak 12€ balio dute." : "Los bocadillos valen 12€.";
+                        priceText = isEu ? "Bokatak 12€ balio dute." : "Los bocadillos valen 12€.";
+                    } else if (text.includes('pintxo') || text.includes('pincho') || text.includes('tortilla') || text.includes('txangurr') || text.includes('racion')) {
+                        priceText = isEu ? "Pintxoek 3€ inguru balio dute, eta errazioek 8€." : "Los pintxos valen alrededor de 3€, y las raciones 8€.";
+                    } else if (text.includes('refres') || text.includes('freskagarri') || text.includes('zurito') || text.includes('caña') || text.includes('cerveza') || text.includes('garagardo') || text.includes('cocacola') || text.includes('agua') || text.includes('ur') || text.includes('bebid') || text.includes('edar') || text.includes('sidra') || text.includes('sagardo')) {
+                        priceText = isEu ? "Freskagarriak, zuritoak eta sagardoa 2€-tan daude." : "Los refrescos, zuritos y la sidra están a 2€.";
+                    } else if (text.includes('vino') || text.includes('ardo') || text.includes('copa') || text.includes('kopa') || text.includes('txakoli')) {
+                        priceText = isEu ? "Ardo edo txakoli kopak 2,50€ balio du." : "La copa de vino o txakoli vale 2,50€.";
+                    } else if (text.includes('cafe') || text.includes('kafe')) {
+                        priceText = isEu ? "Kafeak 1,50€ balio du." : "El café vale 1,50€.";
+                    } else if (text.includes('txuleta') || text.includes('chuleta') || text.includes('haragi') || text.includes('carne')) {
+                        priceText = isEu ? "Txuletak 35€ balio du kiloak." : "La txuleta vale 35€ el kilo.";
+                    } else {
+                        priceText = db[bestIntent];
                     }
-                    if (text.includes('pintxo') || text.includes('pincho') || text.includes('tortilla') || text.includes('txangurr') || text.includes('racion')) {
-                        return isEu ? "Pintxoek 3€ inguru balio dute, eta errazioek 8€." : "Los pintxos valen alrededor de 3€, y las raciones 8€.";
-                    }
-                    if (text.includes('refres') || text.includes('freskagarri') || text.includes('zurito') || text.includes('caña') || text.includes('cerveza') || text.includes('garagardo') || text.includes('cocacola') || text.includes('agua') || text.includes('ur') || text.includes('bebid') || text.includes('edar') || text.includes('sidra') || text.includes('sagardo')) {
-                        return isEu ? "Freskagarriak, zuritoak eta sagardoa 2€-tan daude." : "Los refrescos, zuritos y la sidra están a 2€.";
-                    }
-                    if (text.includes('vino') || text.includes('ardo') || text.includes('copa') || text.includes('kopa') || text.includes('txakoli')) {
-                        return isEu ? "Ardo edo txakoli kopak 2,50€ balio du." : "La copa de vino o txakoli vale 2,50€.";
-                    }
-                    if (text.includes('cafe') || text.includes('kafe')) {
-                        return isEu ? "Kafeak 1,50€ balio du." : "El café vale 1,50€.";
-                    }
-                    if (text.includes('txuleta') || text.includes('chuleta') || text.includes('haragi') || text.includes('carne')) {
-                        return isEu ? "Txuletak 35€ balio du kiloak." : "La txuleta vale 35€ el kilo.";
-                    }
+                    return { 
+                        type: 'text', 
+                        text: priceText, 
+                        suggestedChips: getChipsForIntent('prices') 
+                    };
                 }
-                return db[bestIntent];
+
+                return { 
+                    type: 'text', 
+                    text: db[bestIntent], 
+                    suggestedChips: getChipsForIntent(bestIntent) 
+                };
             }
 
-            // Fallback dinámico si no hay matches
-            return db.fallbacks[Math.floor(Math.random() * db.fallbacks.length)];
+            const fallbackResponse = db.fallbacks[Math.floor(Math.random() * db.fallbacks.length)];
+            return {
+                type: 'text',
+                text: fallbackResponse,
+                suggestedChips: getChipsForIntent('fallback')
+            };
         }
 
         // --- FLASHCARD COVERFLOW LOGIC ---
@@ -4832,7 +5652,12 @@
         if (galleryStack && galleryItems.length > 0) {
             galleryItems.forEach((item, index) => {
                 item.style.zIndex = index + 5;
-                resetGalleryItemTransform(item);
+                if (index === 0) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translate(0, 0)';
+                } else {
+                    resetGalleryItemTransform(item);
+                }
             });
 
             window.addEventListener('scroll', () => {
@@ -4843,7 +5668,7 @@
                 if (progress < 0) progress = 0;
                 if (progress > 1) progress = 1;
 
-                const step = 1 / (galleryItems.length + 1);
+                const step = 1 / galleryItems.length;
 
                 // Title slide interaction
                 if (galleryTitleSlide) {
@@ -4851,7 +5676,13 @@
                 }
 
                 galleryItems.forEach((item, index) => {
-                    const startStep = (index + 1) * step;
+                    if (index === 0) {
+                        item.style.transform = 'translate(0, 0)';
+                        item.style.opacity = '1';
+                        item.classList.add('active');
+                        return;
+                    }
+                    const startStep = index * step;
                     const endStep = startStep + step;
 
                     if (progress <= startStep) {
