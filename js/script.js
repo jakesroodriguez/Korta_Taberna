@@ -71,6 +71,7 @@
                 form_submit_text: "Enviar reseña",
                 form_success_message: "¡Muchas gracias! Tu reseña ha sido añadida correctamente.",
                 gallery_title: "Nuestro rincón en imágenes",
+                gallery_skip_btn: "Saltar galería",
                 transition_quote: "\"El secreto de nuestros platos no está en la receta, está en el origen.\"",
                 footer_tagline: "Pintxos y tradición desde Zumarraga",
                 footer_links_title: "Enlaces",
@@ -149,6 +150,7 @@
                 form_submit_text: "Bidali iritzia",
                 form_success_message: "Eskerrik asko! Zure iritzia zuzen gehitu da gure webgunera.",
                 gallery_title: "Gure Txokoak",
+                gallery_skip_btn: "Saltatu galeria",
                 transition_quote: "\"Gure plateren sekretua ez dago errezetan, jatorrian baizik.\"",
                 footer_tagline: "Pintxoak eta tradizioa Zumarragatik",
                 footer_links_title: "Estekak",
@@ -867,7 +869,9 @@
         const menuCarousel = document.getElementById('menuCarousel');
         if (menuCarousel) {
             const menuCards = menuCarousel.querySelectorAll('.menu-card');
+            const menuDots = document.querySelectorAll('#menuCarouselDots .carousel-dot');
             let currentCardIndex = 0;
+            let menuTimer = null;
 
             function updateMenuCards() {
                 const total = menuCards.length;
@@ -884,13 +888,92 @@
                         card.classList.add('hidden-card');
                     }
                 });
+
+                // Sincronizar puntos de paginación
+                if (menuDots.length > 0) {
+                    menuDots.forEach((dot, idx) => {
+                        if (idx === currentCardIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
             }
 
+            // Click en tarjetas prev/next para navegar directamente
+            menuCards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('prev')) {
+                        currentCardIndex = (currentCardIndex - 1 + menuCards.length) % menuCards.length;
+                        updateMenuCards();
+                        resetMenuTimer();
+                    } else if (card.classList.contains('next')) {
+                        currentCardIndex = (currentCardIndex + 1) % menuCards.length;
+                        updateMenuCards();
+                        resetMenuTimer();
+                    }
+                });
+            });
+
+            // Click en los puntos de navegación
+            menuDots.forEach((dot) => {
+                dot.addEventListener('click', () => {
+                    const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+                    if (!isNaN(targetIndex)) {
+                        currentCardIndex = targetIndex;
+                        updateMenuCards();
+                        resetMenuTimer();
+                    }
+                });
+            });
+
+            // Soporte gestual táctil (Touch Swipe)
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            menuCarousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                pauseMenuTimer();
+            }, { passive: true });
+
+            menuCarousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeDistance = touchEndX - touchStartX;
+                if (swipeDistance < -40) {
+                    // Deslizar izquierda -> siguiente plato
+                    currentCardIndex = (currentCardIndex + 1) % menuCards.length;
+                    updateMenuCards();
+                } else if (swipeDistance > 40) {
+                    // Deslizar derecha -> plato anterior
+                    currentCardIndex = (currentCardIndex - 1 + menuCards.length) % menuCards.length;
+                    updateMenuCards();
+                }
+                startMenuTimer();
+            }, { passive: true });
+
+            function startMenuTimer() {
+                clearInterval(menuTimer);
+                menuTimer = setInterval(() => {
+                    currentCardIndex = (currentCardIndex + 1) % menuCards.length;
+                    updateMenuCards();
+                }, 4500); // 4.5 segundos para lectura cómoda
+            }
+
+            function pauseMenuTimer() {
+                clearInterval(menuTimer);
+            }
+
+            function resetMenuTimer() {
+                pauseMenuTimer();
+                startMenuTimer();
+            }
+
+            menuCarousel.addEventListener('mouseenter', pauseMenuTimer);
+            menuCarousel.addEventListener('mouseleave', startMenuTimer);
+
             updateMenuCards();
-            setInterval(() => {
-                currentCardIndex = (currentCardIndex + 1) % menuCards.length;
-                updateMenuCards();
-            }, 2000); // Cambia cada 2 segundos
+            startMenuTimer();
         }
 
         // --- FULLSCREEN GALLERY LOGIC ---

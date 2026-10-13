@@ -101,27 +101,31 @@
     <nav class="dynamic-island" id="header">
         <!-- Fila Principal (Comprimida) -->
         <div class="island-main-row">
-            <a href="#" class="logo">
-                <img src="assets/images/logo.png"
-                    alt="Korta Taberna - Pintxos y cocina vasca en Zumarraga / Pintxoak eta euskal sukaldaritza Zumarragan">
-            </a>
-
-            <div class="island-divider"></div>
-
-            <!-- Selector de Idioma visible siempre (incluso comprimido) -->
-            <div class="lang-selector-island">
-                <button id="lang-btn-es" class="lang-btn" data-lang="es">CAST</button>
-                <button id="lang-btn-eu" class="lang-btn active" data-lang="eu">EUS</button>
+            <div class="island-brand-slot">
+                <a href="#" class="logo">
+                    <img src="assets/images/logo.png"
+                        alt="Korta Taberna - Pintxos y cocina vasca en Zumarraga / Pintxoak eta euskal sukaldaritza Zumarragan">
+                </a>
             </div>
 
-            <div class="island-divider"></div>
+            <div class="island-center-slot">
+                <div class="island-divider"></div>
+                <!-- Selector de Idioma visible siempre (incluso comprimido) -->
+                <div class="lang-selector-island">
+                    <button id="lang-btn-es" class="lang-btn" data-lang="es">CAST</button>
+                    <button id="lang-btn-eu" class="lang-btn active" data-lang="eu">EUS</button>
+                </div>
+                <div class="island-divider"></div>
+            </div>
 
-            <button class="island-toggle" aria-label="Expandir menú">
-                <svg class="chevron-down" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </button>
+            <div class="island-action-slot">
+                <button class="island-toggle" aria-label="Expandir menú">
+                    <svg class="chevron-down" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <!-- Fila Desplegable (Expandida) -->
@@ -267,10 +271,10 @@
     <section class="about" id="sobre-nosotros">
         <div class="container about-grid reveal">
             <div class="about-collage">
-                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1934&auto=format&fit=crop"
+                <img src="assets/images/taberna/taberna-01.jpg"
                     alt="Barra de pintxos en Korta Taberna, Zumarraga / Korta Tabernako pintxo barra, Zumarraga"
                     class="collage-img-primary" loading="lazy">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop"
+                <img src="assets/images/taberna/taberna-02.jpg"
                     alt="Cocina vasca tradicional en Korta Taberna / Euskal sukaldaritza tradizionala Korta Tabernan"
                     class="collage-img-secondary" loading="lazy">
                 <div class="collage-badge">
@@ -406,6 +410,13 @@
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <div class="menu-carousel-dots" id="menuCarouselDots">
+                <button type="button" class="carousel-dot active" data-index="0" aria-label="Plato 1"></button>
+                <button type="button" class="carousel-dot" data-index="1" aria-label="Plato 2"></button>
+                <button type="button" class="carousel-dot" data-index="2" aria-label="Plato 3"></button>
+                <button type="button" class="carousel-dot" data-index="3" aria-label="Plato 4"></button>
             </div>
 
             <div class="menu-action">
@@ -690,8 +701,9 @@
     <section class="gallery-fullscreen-stack" id="galeria">
         <div class="gallery-ui-layer">
             <button class="gallery-fast-forward"
-                onclick="document.querySelector('.footer').scrollIntoView({behavior: 'smooth'})" title="Saltar galería">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                onclick="document.querySelector('.footer').scrollIntoView({behavior: 'smooth'})" title="Saltar galería" aria-label="Saltar galería">
+                <span class="ff-text" data-key="gallery_skip_btn">Saltar galería</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="7 13 12 18 17 13"></polyline>
                     <polyline points="7 6 12 11 17 6"></polyline>
