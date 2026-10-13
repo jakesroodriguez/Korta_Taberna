@@ -40,14 +40,14 @@
                 pillar3_desc: "Un ambiente cercano, acogedor y dinámico que invita a compartir y disfrutar juntos.",
                 menu_title: "Lo más pedido",
                 menu_subtitle: "Una pequeña muestra de nuestra barra",
-                menu_card1_title: "Pintxo de Txangurro",
-                menu_card1_desc: "Centollo desmigado sobre pan de cristal, gratinado con alioli suave.",
-                menu_card2_title: "Tosta de Anchoa del Cantábrico",
-                menu_card2_desc: "Anchoa de bajura con tomate natural asado y aceite de oliva virgen extra.",
-                menu_card3_title: "Tortilla de Bacalao",
-                menu_card3_desc: "Jugosa y en su punto, con bacalao desalado y pimiento verde.",
-                menu_card4_title: "Txuleta a la Brasa",
-                menu_card4_desc: "Carne madurada de vaca vieja, servida con pimientos de piquillo.",
+                menu_card1_title: "Pintxo de Rulo de Cabra con Ibérico",
+                menu_card1_desc: "Medallón de queso de cabra caramelizado con jamón ibérico curado y anchoa del Cantábrico sobre tosta crujiente.",
+                menu_card2_title: "Bocadillo de Hongos Silvestres y Huevo Campero",
+                menu_card2_desc: "Pan rústico recién tostado con revuelto meloso de setas y hongos silvestres salteados con huevos camperos.",
+                menu_card3_title: "Bocatín de Lomo con Huevo y Pimiento Verde",
+                menu_card3_desc: "Lomo adobado a la plancha con huevo revuelto jugoso y pimiento verde del país en pan rústico crujiente.",
+                menu_card4_title: "Bocadillo de Pollo Crujiente con Bacon y Queso",
+                menu_card4_desc: "Pechuga de pollo empanada crujiente con bacon ahumado, queso fundido, lechuga fresca y tomate natural.",
                 menu_btn: "Carta completa",
                 info_hours_title: "Horario de apertura",
                 info_hours_tue_sat: "Martes a sábado:",
@@ -119,14 +119,14 @@
                 pillar3_desc: "Giro hurbila, atsegina eta dinamikoa, elkarrekin partekatzera eta gozatzera gonbidatzen duena.",
                 menu_title: "Eskatuena",
                 menu_subtitle: "Gure barraren lagin txiki bat",
-                menu_card1_title: "Txangurro Pintxoa",
-                menu_card1_desc: "Txangurro xehatua pan de cristal gainean, alioli leunarekin gratinatua.",
-                menu_card2_title: "Kantauriko Antxoa Tosta",
-                menu_card2_desc: "Kostako antxoa tomate errearekin eta oliba olio birjina estrarekin.",
-                menu_card3_title: "Bakailao Tortilla",
-                menu_card3_desc: "Mamitsua eta bere puntuan, bakailao gabetuarekin eta piper berdearekin.",
-                menu_card4_title: "Txuleta Parrillan",
-                menu_card4_desc: "Behi zaharren haragi ondua, pikillo piperrekin zerbitzatua.",
+                menu_card1_title: "Ahuntz Gazta eta Ibériko Pintxoa",
+                menu_card1_desc: "Ahuntz-gazta karamelizatua ezkur urdaiazpiko iberikoarekin eta Kantauriko antxoarekin ogi txigortu kurruskarian.",
+                menu_card2_title: "Basoko Onddo eta Arrautza Ogitartekoa",
+                menu_card2_desc: "Ogi landatarra basoko onddo salteatuekin, baserriko arrautza krematsuekin eta perrexil ukitu freskoarekin.",
+                menu_card3_title: "Solomo, Arrautza eta Piper Berde Ogitartekoa",
+                menu_card3_desc: "Solomo samurra plantxan bertako piper berde gozoarekin eta arrautza krematsuarekin ogi laberatu berrian.",
+                menu_card4_title: "Oilo Kurruskaria, Bakon eta Gazta Ogitartekoa",
+                menu_card4_desc: "Etxeko oilo paparra kurruskaria, bakon ketuarekin, gazta urtua, letxuga freskoa eta bertako tomatearekin.",
                 menu_btn: "Karta osoa",
                 info_hours_title: "Ordutegia",
                 info_hours_tue_sat: "Asteartetik larunbatera:",
@@ -1069,9 +1069,11 @@
                 }
             });
 
-            window.addEventListener('scroll', () => {
+            function updateFullscreenGallery() {
                 const rect = galleryStack.getBoundingClientRect();
                 const totalScroll = rect.height - window.innerHeight;
+                if (totalScroll <= 0) return;
+
                 let progress = -rect.top / totalScroll;
 
                 if (progress < 0) progress = 0;
@@ -1079,9 +1081,9 @@
 
                 const step = 1 / galleryItems.length;
 
-                // Title slide interaction
+                // Title slide interaction: fade out slightly near the very end
                 if (galleryTitleSlide) {
-                    galleryTitleSlide.style.opacity = '1';
+                    galleryTitleSlide.style.opacity = progress > 0.95 ? String((1 - progress) / 0.05) : '1';
                 }
 
                 galleryItems.forEach((item, index) => {
@@ -1115,7 +1117,21 @@
                         if (item.classList.contains('dir-bottom')) item.style.transform = `translateY(${moveIn}vh)`;
                     }
                 });
+            }
+
+            let isGalleryTicking = false;
+            window.addEventListener('scroll', () => {
+                if (!isGalleryTicking) {
+                    window.requestAnimationFrame(() => {
+                        updateFullscreenGallery();
+                        isGalleryTicking = false;
+                    });
+                    isGalleryTicking = true;
+                }
             }, { passive: true });
+
+            window.addEventListener('resize', updateFullscreenGallery, { passive: true });
+            updateFullscreenGallery();
         }
 
         function resetGalleryItemTransform(item) {
