@@ -252,6 +252,15 @@
             justify-content: center;
             pointer-events: none;
             z-index: 1000;
+            transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+            will-change: transform, opacity;
+        }
+
+        /* Salida y entrada suave de la cabecera en movil y escritorio */
+        .island-wrapper.island-hidden {
+            transform: translateY(-130%);
+            opacity: 0;
+            pointer-events: none;
         }
 
         .dynamic-island {
@@ -276,10 +285,19 @@
             flex-direction: column;
             width: auto;
             min-width: 220px;
-            height: 46px;
+            height: auto;
+            min-height: 46px;
+            max-height: 46px;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: max-height 0.48s cubic-bezier(0.32, 0.72, 0, 1),
+                        width 0.48s cubic-bezier(0.32, 0.72, 0, 1),
+                        border-radius 0.4s ease,
+                        background 0.4s ease,
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease,
+                        padding 0.4s ease;
             cursor: pointer;
+            will-change: max-height, width, transform;
         }
 
         .dynamic-island.scrolled {
@@ -802,11 +820,11 @@
         @keyframes islandPop {
             0% {
                 opacity: 0;
-                transform: translateY(-40px) scale(0.1);
+                transform: translateY(-28px) scale(0.9);
             }
-            60% {
+            70% {
                 opacity: 1;
-                transform: translateY(10px) scale(1.2);
+                transform: translateY(3px) scale(1.02);
             }
             100% {
                 opacity: 1;
@@ -1274,6 +1292,22 @@
             opacity: 0;
             transform: translateX(0) scale(0.5) translateZ(-300px);
             filter: blur(15px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .menu-card.hidden-left {
+            opacity: 0;
+            transform: translateX(-110%) scale(0.7) translateZ(-150px);
+            filter: blur(10px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .menu-card.hidden-right {
+            opacity: 0;
+            transform: translateX(110%) scale(0.7) translateZ(-150px);
+            filter: blur(10px);
             z-index: 1;
             pointer-events: none;
         }
@@ -1855,7 +1889,7 @@
             width: 100%;
             height: 550vh;
             /* Recorrido suave y envolvente de las 11 fotos */
-            background: var(--color-bg);
+            background: #141708;
         }
 
         .gallery-sticky-wrapper {
@@ -2637,6 +2671,15 @@
         z-index: 1000;
         pointer-events: none;
         padding: 0 16px;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+        will-change: transform, opacity;
+    }
+
+    /* Salida y entrada fluida del móvil en scroll */
+    .island-wrapper.island-hidden {
+        transform: translateY(calc(-100% - 30px));
+        opacity: 0;
+        pointer-events: none;
     }
 
     .dynamic-island {
@@ -2644,7 +2687,9 @@
         width: auto;
         min-width: 260px;
         max-width: calc(100vw - 32px);
-        height: 46px;
+        height: auto;
+        min-height: 46px;
+        max-height: 46px;
         padding: 0 14px;
         display: flex;
         flex-direction: column;
@@ -2655,8 +2700,15 @@
         -webkit-backdrop-filter: blur(28px) saturate(190%);
         border: 1px solid rgba(255, 255, 255, 0.18);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-        transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
+        transition: max-height 0.48s cubic-bezier(0.32, 0.72, 0, 1),
+                    width 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+                    border-radius 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+                    background 0.35s ease,
+                    box-shadow 0.35s ease,
+                    padding 0.35s ease;
         margin: 0 auto;
+        will-change: max-height, width, transform;
     }
 
     .dynamic-island.scrolled {
@@ -2755,7 +2807,7 @@
         flex-direction: column;
         width: min(350px, calc(100vw - 32px));
         height: auto;
-        max-height: 85vh;
+        max-height: 520px;
         padding: 12px 16px 18px;
         border-radius: 28px;
         background: rgba(20, 23, 10, 0.95);
@@ -2820,6 +2872,29 @@
         font-weight: 600;
         border-radius: 20px;
     }
+
+    /* Micro-animación escalonada al desplegar la isla */
+    @keyframes islandItemSlideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .dynamic-island.expanded .nav-menu a,
+    .dynamic-island.expanded .header-actions .btn-reserve {
+        animation: islandItemSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .dynamic-island.expanded .nav-menu a:nth-child(1) { animation-delay: 0.05s; }
+    .dynamic-island.expanded .nav-menu a:nth-child(2) { animation-delay: 0.09s; }
+    .dynamic-island.expanded .nav-menu a:nth-child(3) { animation-delay: 0.13s; }
+    .dynamic-island.expanded .header-actions a:nth-child(1) { animation-delay: 0.17s; }
+    .dynamic-island.expanded .header-actions a:nth-child(2) { animation-delay: 0.21s; }
 
     .dynamic-island.mode-review {
         width: min(350px, calc(100vw - 32px));
@@ -3085,6 +3160,14 @@
         color: var(--color-text-sec);
     }
 
+    .menu-card {
+        transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.45s ease,
+                    filter 0.45s ease,
+                    box-shadow 0.45s ease;
+        will-change: transform, opacity;
+    }
+
     .menu-card.prev {
         transform: translateX(-38%) scale(0.86) translateZ(-50px);
         opacity: 0.35;
@@ -3097,6 +3180,20 @@
         opacity: 0.35;
         pointer-events: auto;
         cursor: pointer;
+    }
+
+    .menu-card.hidden-left {
+        transform: translateX(-115%) scale(0.72) translateZ(-60px);
+        opacity: 0;
+        filter: blur(8px);
+        pointer-events: none;
+    }
+
+    .menu-card.hidden-right {
+        transform: translateX(115%) scale(0.72) translateZ(-60px);
+        opacity: 0;
+        filter: blur(8px);
+        pointer-events: none;
     }
 
     .menu-carousel-dots {
@@ -3219,34 +3316,75 @@
         gap: 16px;
     }
 
-    /* Galería Fullscreen de Scroll Móvil */
+    /* Galería Fullscreen de Scroll Móvil — Full-Bleed con Reencuadre Calibrado */
     .gallery-fullscreen-stack {
         height: 380vh; /* Óptimo para scroll táctil móvil sin fatiga */
+        background: #141708;
     }
 
     .gallery-sticky-wrapper {
         height: 100vh;
         height: 100dvh;
-        height: 100svh;
+        min-height: 100%;
+        background: #141708;
+    }
+
+    .gallery-sticky-wrapper::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 160px;
+        background: linear-gradient(to bottom, transparent 0%, rgba(20, 23, 8, 0.85) 60%, #141708 100%);
+        pointer-events: none;
+        z-index: 25;
     }
 
     .gallery-fs-item {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
         background-size: cover !important;
-        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-position: var(--focus, center center) !important;
+        background-color: #141708;
         box-shadow: none;
+        will-change: transform, opacity;
     }
 
-    /* Viñeta sutil en móvil para contraste gastronómico */
+    /* Viñeta cinematográfica para contraste del plato y legibilidad de textos */
     .gallery-fs-item::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, rgba(20, 23, 8, 0.55) 0%, transparent 22%, transparent 75%, rgba(20, 23, 8, 0.8) 100%);
+        background: linear-gradient(to bottom, 
+            rgba(20, 23, 8, 0.6) 0%, 
+            rgba(20, 23, 8, 0.2) 20%, 
+            transparent 35%, 
+            transparent 65%, 
+            rgba(20, 23, 8, 0.4) 80%, 
+            rgba(20, 23, 8, 0.85) 100%);
         pointer-events: none;
+        z-index: 1;
     }
 
+    /* Puntos focales calibrados individualmente (1 a 11; +2 por los divs de título y UI previos) */
+    .gallery-fs-item:nth-of-type(3),  .gallery-fs-item[data-bg*="galeria-01"] { --focus: 52% 48%; } /* Bocadillo tortilla y bonito */
+    .gallery-fs-item:nth-of-type(4),  .gallery-fs-item[data-bg*="galeria-02"] { --focus: 46% 46%; } /* Primer plano corte relleno */
+    .gallery-fs-item:nth-of-type(5),  .gallery-fs-item[data-bg*="galeria-03"] { --focus: 62% 52%; } /* Mitad derecha cargada de tortilla y bonito */
+    .gallery-fs-item:nth-of-type(6),  .gallery-fs-item[data-bg*="galeria-04"] { --focus: 58% 50%; } /* Pintxo rulo cabra + anchoa centrado */
+    .gallery-fs-item:nth-of-type(7),  .gallery-fs-item[data-bg*="galeria-05"] { --focus: 50% 54%; } /* Bocadillo jamón, cabra y anchoas */
+    .gallery-fs-item:nth-of-type(8),  .gallery-fs-item[data-bg*="galeria-06"] { --focus: 56% 52%; } /* Bocadillo anchoas en plato mosaico */
+    .gallery-fs-item:nth-of-type(9),  .gallery-fs-item[data-bg*="galeria-07"] { --focus: 48% 48%; } /* Cazuelita de setas */
+    .gallery-fs-item:nth-of-type(10), .gallery-fs-item[data-bg*="galeria-08"] { --focus: 36% 50%; } /* Mitad delantera revuelto de setas */
+    .gallery-fs-item:nth-of-type(11), .gallery-fs-item[data-bg*="galeria-09"] { --focus: 50% 50%; } /* Detalle revuelto de setas esponjoso */
+    .gallery-fs-item:nth-of-type(12), .gallery-fs-item[data-bg*="galeria-10"] { --focus: 46% 52%; } /* Bocadillo pechuga crujiente en bandeja */
+    .gallery-fs-item:nth-of-type(13), .gallery-fs-item[data-bg*="galeria-11"] { --focus: 50% 52%; } /* Pechuga empanada con fondo cálido */
+
     .gallery-title-slide {
-        top: calc(16px + env(safe-area-inset-top, 0px));
+        top: calc(70px + env(safe-area-inset-top, 0px));
         padding: 8px 18px;
     }
 
@@ -3259,7 +3397,7 @@
     .gallery-ui-layer {
         position: absolute;
         top: auto;
-        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
         left: 0;
         width: 100%;
         height: auto;
@@ -3383,7 +3521,9 @@
     .dynamic-island {
         min-width: 240px;
         max-width: calc(100vw - 20px);
-        height: 44px;
+        height: auto;
+        min-height: 44px;
+        max-height: 44px;
         padding: 0 10px;
     }
 
@@ -3408,8 +3548,20 @@
 
     .dynamic-island.expanded {
         width: calc(100vw - 20px);
-        max-height: 84vh;
+        max-height: 520px;
         padding: 12px 14px 16px;
+    }
+
+    .menu-card.hidden-left {
+        transform: translateX(-110%) scale(0.7);
+        opacity: 0;
+        filter: blur(6px);
+    }
+
+    .menu-card.hidden-right {
+        transform: translateX(110%) scale(0.7);
+        opacity: 0;
+        filter: blur(6px);
     }
 
     .dynamic-island.mode-review {

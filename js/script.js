@@ -526,21 +526,50 @@
             }, 500);
         });
 
-        // --- COMPORTAMIENTO ISLA DINÁMICA E ISLA FLOTANTE DE IDIOMA ---
+                // --- COMPORTAMIENTO ISLA DINÁMICA: SMART HEADER CON SALIDA Y ENTRADA SUAVE EN SCROLL ---
         const header = document.getElementById('header');
+        const islandWrapper = document.querySelector('.island-wrapper');
         const floatingLang = document.getElementById('floating-lang-island');
+        let lastScrollY = window.scrollY || 0;
+        let isScrollTicking = false;
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                if (header) header.classList.add('scrolled');
-                if (floatingLang) floatingLang.classList.add('visible');
-            } else {
-                if (header) header.classList.remove('scrolled');
-                if (floatingLang) floatingLang.classList.remove('visible');
-            }
-        });
+            if (!isScrollTicking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    const scrollDelta = currentScrollY - lastScrollY;
 
-        // --- COMPORTAMIENTO EXPANSIÓN ISLA DINÁMICA ---
+                    // Estilo compacto
+                    if (currentScrollY > 70) {
+                        if (header) header.classList.add('scrolled');
+                        if (floatingLang) floatingLang.classList.add('visible');
+                    } else {
+                        if (header) header.classList.remove('scrolled');
+                        if (floatingLang) floatingLang.classList.remove('visible');
+                    }
+
+                    // Salida y entrada fluida del móvil en scroll:
+                    // Al deslizar hacia abajo, la cabecera sale suavemente hacia arriba (-100%).
+                    // Al deslizar hacia arriba, entra suavemente desde arriba a su posición.
+                    // Si el menú está desplegado (expanded) o en modo reseña, permanece visible.
+                    if (islandWrapper && header && !header.classList.contains('expanded') && !header.classList.contains('mode-review')) {
+                        if (currentScrollY <= 70) {
+                            islandWrapper.classList.remove('island-hidden');
+                        } else if (scrollDelta > 7 && currentScrollY > 100) {
+                            islandWrapper.classList.add('island-hidden');
+                        } else if (scrollDelta < -7) {
+                            islandWrapper.classList.remove('island-hidden');
+                        }
+                    }
+
+                    lastScrollY = currentScrollY;
+                    isScrollTicking = false;
+                });
+                isScrollTicking = true;
+            }
+        }, { passive: true });
+
+// --- COMPORTAMIENTO EXPANSIÓN ISLA DINÁMICA ---
         const island = document.getElementById('header');
         const islandReviewRow = document.getElementById('island-review-row');
         const islandReviewBackBtn = document.getElementById('island-review-back');
@@ -554,6 +583,7 @@
 
             if (!island.classList.contains('expanded')) {
                 island.classList.add('expanded');
+                if (islandWrapper) islandWrapper.classList.remove('island-hidden');
             } else {
                 if (e.target.closest('.island-toggle') || (e.target.closest('a') && !isLangBtn) || !isClickInsideContent) {
                     island.classList.remove('expanded');
@@ -885,7 +915,13 @@
                     } else if (index === (currentCardIndex + 1) % total) {
                         card.classList.add('next');
                     } else {
-                        card.classList.add('hidden-card');
+                        // Calcular si el plato queda a la izquierda o a la derecha para entrada y salida fluida
+                        const diff = (index - currentCardIndex + total) % total;
+                        if (diff > total / 2) {
+                            card.classList.add('hidden-left');
+                        } else {
+                            card.classList.add('hidden-right');
+                        }
                     }
                 });
 
@@ -1140,4 +1176,34 @@
             if (item.classList.contains('dir-right')) item.style.transform = 'translateX(100vw)';
             if (item.classList.contains('dir-top')) item.style.transform = 'translateY(-100vh)';
             if (item.classList.contains('dir-bottom')) item.style.transform = 'translateY(100vh)';
+        }
+
+        // --- LAZY LOADING DE IMÁGENES DE GALERÍA (IntersectionObserver) ---
+        if ('IntersectionObserver' in window && galleryStack) {
+            const galleryObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        galleryItems.forEach(item => {
+                            if (item.dataset.bg && !item.style.backgroundImage) {
+                                item.style.backgroundImage = `url('${item.dataset.bg}')`;
+                            }
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { rootMargin: '600px 0px' });
+            galleryObserver.observe(galleryStack);
+        } else if (galleryItems) {
+            galleryItems.forEach(item => {
+                if (item.dataset.bg && !item.style.backgroundImage) {
+                    item.style.backgroundImage = `url('${item.dataset.bg}')`;
+                }
+            });
+        }
+
+        // --- REGISTRO DEL SERVICE WORKER (Carga instantánea 0ms y modo offline) ---
+        if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
         }
