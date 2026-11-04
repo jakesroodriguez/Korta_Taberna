@@ -1,4 +1,4 @@
-const CACHE_NAME = 'korta-taberna-v3';
+const CACHE_NAME = 'korta-taberna-v5';
 const CORE_ASSETS = [
     './',
     'index.html',

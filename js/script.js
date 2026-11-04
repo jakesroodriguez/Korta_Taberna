@@ -10,36 +10,39 @@
             document.documentElement.style.scrollBehavior = 'smooth';
         }
 
-        // --- BASE DE DATOS DE TRADUCCIÓN ---
+                // --- BASE DE DATOS DE TRADUCCIÓN ---
         const translations = {
             es: {
+                page_title: "Korta Taberna | Bar de Pintxos, Bocadillos y Brasa en Zumarraga y Urretxu",
+                meta_description: "Korta Taberna en Zumarraga y Urretxu (Barrio Eitza, desde 1985). Pintxos elaborados a diario con producto local, bocadillos rústicos, txuleta a la brasa y terraza. ¡Ven de poteo!",
                 nav_inicio: "Inicio",
                 nav_carta: "Carta",
                 nav_galeria: "Galería",
                 nav_esencia: "Sobre Nosotros",
                 nav_contacto: "Contacto",
+                nav_faq: "Preguntas Frecuentes",
                 nav_write_review: "Dejar Reseña",
                 nav_reseñas: "Reseñas",
                 nav_reserve: "Reservar",
-                hero_h1: "Korta Taberna | Mejor Taberna Zumarraga",
+                hero_h1: "Korta Taberna | Bar de Pintxos, Raciones y Cocina Vasca en Zumarraga y Urretxu",
                 hero_title: "Korta Taberna",
-                hero_subtitle: "Pintxos, vinos y tradición desde el corazón de Gipuzkoa",
+                hero_subtitle: "Pintxos, bocadillos y tradición vasca desde el corazón de Gipuzkoa",
                 hero_menu_btn: "Ver nuestra carta",
                 hero_map_btn: "Cómo llegar",
                 hero_call_btn: "Llámanos",
                 badge_local_product: "100% Tokiko Produktua",
-                about_tag: "Tradición desde 1985",
-                about_title: "Nuestra Esencia",
-                about_p1: "En el corazón de Zumarraga, Korta Taberna es el lugar donde la cocina vasca de siempre se convierte en experiencia. Nuestros pintxos elaborados a diario, la materia prima de cercanía y el calor de la barra te esperan para compartir momentos inolvidables.",
-                about_p2: "Cada plato cuenta una historia de producto local, desde la anchoa del Cantábrico hasta la txuleta de nuestras montañas. Un rincón con alma donde se respira la esencia de Gipuzkoa.",
+                about_tag: "Tradición desde 1985 · Barrio Eitza",
+                about_title: "Nuestra Esencia: Tradición Vasca entre Zumarraga y Urretxu",
+                about_p1: "En el emblemático Barrio de Eitza, Korta Taberna es el punto de encuentro gastronómico donde la cocina tradicional vasca se vive en cada bocado. Con más de 40 años de historia, nuestra barra de pintxos diarios, raciones a la brasa y productos de caserío te esperan para disfrutar del mejor ambiente.",
+                about_p2: "Situados a escasos minutos a pie del centro de Urretxu y en plena subida hacia la Ermita de La Antigua, unimos lo mejor de ambas localidades. Desde la anchoa del Cantábrico y el txangurro hasta la txuleta madurada: sabor, cercanía y pasión por el producto local.",
                 pillar1_title: "Materia Prima Local",
                 pillar1_desc: "Ingredientes frescos y de temporada seleccionados directamente de productores locales y del puerto.",
                 pillar2_title: "Tradición Familiar",
                 pillar2_desc: "Recetas tradicionales y técnicas culinarias vascas perfeccionadas a lo largo de décadas.",
                 pillar3_title: "El Alma de la Barra",
                 pillar3_desc: "Un ambiente cercano, acogedor y dinámico que invita a compartir y disfrutar juntos.",
-                menu_title: "Lo más pedido",
-                menu_subtitle: "Una pequeña muestra de nuestra barra",
+                menu_title: "Nuestra Barra y Cocina",
+                menu_subtitle: "Pintxos elaborados a diario, bocadillos rústicos y brasa en Zumarraga",
                 menu_card1_title: "Pintxo de Rulo de Cabra con Ibérico",
                 menu_card1_desc: "Medallón de queso de cabra caramelizado con jamón ibérico curado y anchoa del Cantábrico sobre tosta crujiente.",
                 menu_card2_title: "Bocadillo de Hongos Silvestres y Huevo Campero",
@@ -48,6 +51,14 @@
                 menu_card3_desc: "Lomo adobado a la plancha con huevo revuelto jugoso y pimiento verde del país en pan rústico crujiente.",
                 menu_card4_title: "Bocadillo de Pollo Crujiente con Bacon y Queso",
                 menu_card4_desc: "Pechuga de pollo empanada crujiente con bacon ahumado, queso fundido, lechuga fresca y tomate natural.",
+                menu_card5_title: "Pintxo de Txangurro Gratinado",
+                menu_card5_desc: "Centollo desmigado sobre pan de cristal crujiente, gratinado al momento con suave alioli casero.",
+                menu_card6_title: "Tosta de Anchoa del Cantábrico",
+                menu_card6_desc: "Anchoa de bajura seleccionada sobre tosta con tomate natural asado y aceite de oliva virgen extra.",
+                menu_card7_title: "Tortilla de Bacalao Tradicional",
+                menu_card7_desc: "Jugosa y en su punto justo, elaborada al momento con bacalao desalado de primera y pimiento verde del país.",
+                menu_card8_title: "Txuleta de Vaca Vieja a la Brasa",
+                menu_card8_desc: "Carne madurada seleccionada a la brasa, servida al punto con sal en escamas y pimientos del piquillo confitados.",
                 menu_btn: "Carta completa",
                 info_hours_title: "Horario de apertura",
                 info_hours_tue_sat: "Martes a sábado:",
@@ -55,13 +66,13 @@
                 info_hours_mon: "Lunes:",
                 info_hours_closed: "cerrado",
                 info_hours_note: "Cocina ininterrumpida de 13:00 a 15:30 y de 20:00 a 22:00.",
-                info_loc_title: "Encuéntranos",
+                info_loc_title: "Encuéntranos en Eitza",
                 info_loc_btn: "Abrir en Google Maps",
                 reviews_title: "Lo que dicen nuestros clientes",
-                reviews_subtitle: "Basado en +200 reseñas",
-                review1_text: "\"El mejor pintxo de Zumarraga, sin duda. Ambiente inmejorable y el trato es como estar en casa. La tortilla de bacalao es espectacular. ¡Volveremos cada vez que pasemos por la zona!\"",
+                reviews_subtitle: "Basado en +200 reseñas en Google Maps",
+                review1_text: "\"El mejor pintxo de Zumarraga y Urretxu, sin duda. Ambiente inmejorable y el trato es como estar en casa. La tortilla de bacalao es espectacular. ¡Volveremos cada vez que pasemos por la zona!\"",
                 review2_text: "\"Producto de primera y una barra que enamora. No te pierdas la txuleta, es de otro nivel. Relación calidad-precio difícil de superar. Enhorabuena al equipo.\"",
-                review3_text: "\"Taberna auténtica con un toque moderno. Los pintxos fríos y calientes son muy originales, y la selección de vinos es excelente. Recomiendo la tosta de anchoa. Solo echo en falta un poco más de espacio los fines de semana, pero merece la pena.\"",
+                review3_text: "\"Taberna auténtica con un toque moderno en el barrio de Eitza. Los pintxos fríos y calientes son muy originales, y la selección de vinos es excelente. Recomiendo la tosta de anchoa y el bocadillo de hongos.\"",
                 write_review_title: "Comparte tu experiencia",
                 write_review_subtitle: "Queremos saber tu opinión. Tu reseña aparecerá instantáneamente en nuestra web.",
                 btn_write_review: "Compartir mi experiencia",
@@ -72,8 +83,22 @@
                 form_success_message: "¡Muchas gracias! Tu reseña ha sido añadida correctamente.",
                 gallery_title: "Nuestro rincón en imágenes",
                 gallery_skip_btn: "Saltar galería",
+                faq_title: "Preguntas Frecuentes",
+                faq_subtitle: "Todo lo que necesitas saber sobre Korta Taberna (Zumarraga - Urretxu)",
+                faq_q1: "¿Dónde está ubicado Korta Taberna y cuánto se tarda desde Urretxu o la estación?",
+                faq_a1: "Korta Taberna se encuentra en San Gregorio Kalea, 20 (Barrio de Eitza, 20700 Zumarraga, Gipuzkoa). Al formar Zumarraga y Urretxu un único núcleo urbano continuo, estamos a tan solo 4–5 minutos a pie desde el centro de Urretxu (Areizaga Kalea) y desde la estación intermodal de tren y autobús de Zumarraga-Urretxu.",
+                faq_q2: "¿Es una buena opción para comer cerca de la Ermita de La Antigua o del Hospital de Zumarraga?",
+                faq_a2: "Totalmente. El Barrio de Eitza es el punto de paso natural para subir o bajar de la Ermita de La Antigua ('la catedral de las ermitas vascas') y se sitúa a solo 2 minutos del Hospital Comarcal de Zumarraga. Es el lugar perfecto para desayunos, hamaiketako, pintxos de barra, raciones o bocadillos rústicos.",
+                faq_q3: "¿Cuál es la diferencia entre Korta Taberna (Corta Taberna) y Korta Erretegia?",
+                faq_a3: "Korta Taberna (a menudo buscada como Corta Taberna o Bar Korta) es el bar de pintxos, cocina tradicional, brasa y terraza situado en el Barrio de Eitza desde 1985. Korta Erretegia es un asador y restaurante de celebraciones y bodas ubicado en el Barrio San Lorenzo.",
+                faq_q4: "¿Cuál es el horario de apertura, cocina y pintxos en Korta Taberna?",
+                faq_a4: "Abrimos todos los días de la semana: lunes a viernes de 09:00 a 22:30, sábados de 10:30 a 00:30 y domingos de 10:30 a 22:30. El horario de cocina caliente es de 13:00 a 15:30 y de 20:00 a 22:00, con barra continua de pintxos fríos y calientes durante todo el día.",
                 transition_quote: "\"El secreto de nuestros platos no está en la receta, está en el origen.\"",
-                footer_tagline: "Pintxos y tradición desde Zumarraga",
+                footer_tagline: "Pintxos, cocina vasca y tradición desde 1985 en el Barrio de Eitza",
+                footer_address_title: "Ubicación y Contacto",
+                footer_nav_title: "Navegación",
+                footer_schedule_title: "Horario",
+                footer_schedule_text: "Lunes a Viernes: 09:00 – 22:30 · Sábado: 10:30 – 00:30 · Domingo: 10:30 – 22:30",
                 footer_links_title: "Enlaces",
                 footer_contact_title: "Contacto",
                 footer_newsletter_title: "Recibe nuestras novedades y eventos",
@@ -89,36 +114,39 @@
                 day_fri: "Viernes:",
                 day_sat: "Sábado:",
                 day_sun: "Domingo:",
-                footer_copyright: "© 2026 Korta Taberna. Todos los derechos reservados."
+                footer_copyright: "© 2026 Korta Taberna. Todos los derechos reservados. San Gregorio Kalea, 20, 20700 Zumarraga - Urretxu (Gipuzkoa)."
             },
             eu: {
+                page_title: "Korta Taberna | Pintxoak, Ogitartekoak eta Euskal Sukaldaritza Zumarraga eta Urretxun",
+                meta_description: "Korta Taberna Zumarraga eta Urretxun (Eitza auzoan, 1985etik). Eguneroko pintxoak tokiko produktuarekin, ogitartekoak, txuleta parrillan eta terraza. Zatoz poteoan!",
                 nav_inicio: "Hasiera",
                 nav_carta: "Karta",
                 nav_galeria: "Galeria",
                 nav_esencia: "Gure Esentzia",
                 nav_contacto: "Kontaktua",
+                nav_faq: "Ohiko Galderak",
                 nav_write_review: "Iritzia utzi",
                 nav_reseñas: "Iritziak",
                 nav_reserve: "Erreserbatu",
-                hero_h1: "Korta Taberna | Zumarragako Tabernarik Onena",
+                hero_h1: "Korta Taberna | Pintxo, Errazio eta Euskal Sukaldaritza Taberna Zumarraga eta Urretxun",
                 hero_title: "Korta Taberna",
-                hero_subtitle: "Pintxoak, ardoak eta tradizioa Gipuzkoako bihotzetik",
+                hero_subtitle: "Pintxoak, ogitartekoak eta euskal tradizioa Gipuzkoako bihotzetik",
                 hero_menu_btn: "Ikusi gure karta",
                 hero_map_btn: "Nola iritsi",
                 hero_call_btn: "Deitu iezaguzu",
                 badge_local_product: "100% Tokiko Produktua",
-                about_tag: "Tradizioa 1985etik",
-                about_title: "Gure Esentzia",
-                about_p1: "Zumarragako bihotzean, Korta Taberna euskal sukaldaritza beti bizi izateko tokia da. Egunero egindako pintxoak, inguruko lehengaiak eta tabernako berotasuna zain dituzu une ahaztezinak partekatzeko.",
-                about_p2: "Plater bakoitzak tokiko produktuaren istorio bat kontatzen du, Kantauriko antxoatik hasi eta gure mendietako txuletaraino. Gipuzkoako esentzia arnasten den arima duen txokoa.",
+                about_tag: "Tradizioa 1985etik · Eitza Auzoa",
+                about_title: "Gure Esentzia: Euskal Tradizioa Zumarraga eta Urretxu Artean",
+                about_p1: "Eitza auzo enblematikoan, Korta Taberna euskal sukaldaritza tradizionala trago eta mokadu bakoitzean bizitzeko topagunea da. 40 urte baino gehiagoko historiarekin, gure eguneroko pintxoen barra, parrillako errazioak eta baserriko produktuak zain dituzu poteo giro onenaz gozatzeko.",
+                about_p2: "Urretxuko erdigunetik oinez minutu gutxira eta Antioko baselizarako bidean kokatuta, bi herrietako onena batzen dugu. Kantauriko antxoa eta txangurrotik hasi eta behi zaharreko txuletaraino: zaporea, gertutasuna eta tokiko produktuarekiko grina.",
                 pillar1_title: "Tokiko Lehengaia",
                 pillar1_desc: "Garaiko ingredientu freskoak, inguruko ekoizleengandik eta portutik zuzenean hautatuak.",
                 pillar2_title: "Familia Tradizioa",
                 pillar2_desc: "Euskal sukaldaritzako errezeta tradizionalak eta teknikak, hamarkadetan zehar hobetuak.",
                 pillar3_title: "Tabernako Arima",
                 pillar3_desc: "Giro hurbila, atsegina eta dinamikoa, elkarrekin partekatzera eta gozatzera gonbidatzen duena.",
-                menu_title: "Eskatuena",
-                menu_subtitle: "Gure barraren lagin txiki bat",
+                menu_title: "Gure Barra eta Sukaldea",
+                menu_subtitle: "Egunero egindako pintxoak, ogitartekoak eta parrilla Zumarragan",
                 menu_card1_title: "Ahuntz Gazta eta Ibériko Pintxoa",
                 menu_card1_desc: "Ahuntz-gazta karamelizatua ezkur urdaiazpiko iberikoarekin eta Kantauriko antxoarekin ogi txigortu kurruskarian.",
                 menu_card2_title: "Basoko Onddo eta Arrautza Ogitartekoa",
@@ -127,6 +155,14 @@
                 menu_card3_desc: "Solomo samurra plantxan bertako piper berde gozoarekin eta arrautza krematsuarekin ogi laberatu berrian.",
                 menu_card4_title: "Oilo Kurruskaria, Bakon eta Gazta Ogitartekoa",
                 menu_card4_desc: "Etxeko oilo paparra kurruskaria, bakon ketuarekin, gazta urtua, letxuga freskoa eta bertako tomatearekin.",
+                menu_card5_title: "Txangurro Pintxo Gratinatua",
+                menu_card5_desc: "Txangurro xehatua ogi kristal kurruskarian, etxeko alioli leunarekin unean bertan gratinatua.",
+                menu_card6_title: "Kantauriko Antxoa Tosta",
+                menu_card6_desc: "Kostako antxoa hautatua tosta gainean, tomate erre naturalarekin eta oliba olio birjina estrarekin.",
+                menu_card7_title: "Bakailao Tortilla Tradizionala",
+                menu_card7_desc: "Mamitsua eta eztitsua, unean bertan egina lehen mailako bakailao gabetuarekin eta bertako piper berdearekin.",
+                menu_card8_title: "Behi Zahar Txuleta Parrillan",
+                menu_card8_desc: "Haragi ondua parrillan errea, bere puntuan zerbitzatua gatz-ezkatekin eta konfitatutako pikillo piperrekin.",
                 menu_btn: "Karta osoa",
                 info_hours_title: "Ordutegia",
                 info_hours_tue_sat: "Asteartetik larunbatera:",
@@ -134,13 +170,13 @@
                 info_hours_mon: "Astelehena:",
                 info_hours_closed: "itxita",
                 info_hours_note: "Sukaldea etengabe zabalik 13:00etatik 15:30era eta 20:00etatik 22:00etara.",
-                info_loc_title: "Aurki gaitzazu",
+                info_loc_title: "Aurki gaitzazu Eitzan",
                 info_loc_btn: "Ireki Google Maps-en",
                 reviews_title: "Gure bezeroek esaten dutena",
-                reviews_subtitle: "+200 baloraziotik gora",
-                review1_text: "\"Zumarragako pintxorik onena, zalantzarik gabe. Giro ezin hobea eta harrera etxean bezala sentitzea da. Bakailao tortilla bikaina da. Ingurutik pasatzen garen bakoitzean itzuliko gara!\"",
+                reviews_subtitle: "+200 baloraziotik gora Google Maps-en",
+                review1_text: "\"Zumarraga eta Urretxuko pintxorik onena, zalantzarik gabe. Giro ezin hobea eta harrera etxean bezala sentitzea da. Bakailao tortilla bikaina da. Ingurutik pasatzen garen bakoitzean itzuliko gara!\"",
                 review2_text: "\"Lehen mailako produktua eta maitemintzen duen barra. Ez galdu txuleta, beste maila bat da. Kalitate-prezio erlazioa gainditzen zaila. Zorionak taldeari.\"",
-                review3_text: "\"Taberna autentikoa ukitu modernoarekin. Pintxo hotz eta beroak oso originalak dira, eta ardo aukeraketa bikaina da. Antxoa tosta gomendatzen dut. Asteburuetan lekua falta da, baina merezi du.\"",
+                review3_text: "\"Taberna autentikoa ukitu modernoarekin Eitza auzoan. Pintxo hotz eta beroak oso originalak dira, eta ardo aukeraketa bikaina da. Antxoa tosta eta onddo ogitartekoa gomendatzen ditut.\"",
                 write_review_title: "Idatzi zure iritzia",
                 write_review_subtitle: "Zure iritzia jakin nahi dugu. Zure balorazioa berehala agertuko da gure webgunean.",
                 btn_write_review: "Zure esperientzia partekatu",
@@ -151,8 +187,22 @@
                 form_success_message: "Eskerrik asko! Zure iritzia zuzen gehitu da gure webgunera.",
                 gallery_title: "Gure Txokoak",
                 gallery_skip_btn: "Saltatu galeria",
+                faq_title: "Ohiko Galderak",
+                faq_subtitle: "Korta Tabernari buruz jakin behar duzun guztia (Zumarraga - Urretxu)",
+                faq_q1: "Non dago Korta Taberna eta zenbat denbora behar da Urretxutik edo geltokitik?",
+                faq_a1: "Korta Taberna San Gregorio Kalea, 20n kokatuta dago (Eitza Auzoa, 20700 Zumarraga, Gipuzkoa). Zumarragak eta Urretxuk hiri-gune bakar eta jarraitua osatzen dutenez, Urretxuko erdigunetik (Areizaga kalea) eta tren eta autobus geltoki intermodaletik 4-5 minutu eskasera gaude oinez.",
+                faq_q2: "Aukera ona al da Antioko Baselizatik edo Zumarragako Ospitaletik gertu jateko?",
+                faq_a2: "Guztiz. Eitza Auzoa igarobide naturala da Antioko baselizara ('euskal baselizen katedrala') igo edo jaisteko, eta Zumarragako Eskualdeko Ospitaletik 2 minutura dago. Leku ezin hobea da gosarietarako, hamaiketakorako, barrako pintxoetarako, errazioetarako edo ogitartekoetarako.",
+                faq_q3: "Zein da Korta Taberna eta Korta Erretegiaren arteko aldea?",
+                faq_a3: "Korta Taberna (sarritan Corta Taberna edo Bar Korta bezala bilatua) Eitza Auzoan 1985etik dagoen pintxo, sukaldaritza tradizional, parrilla eta terrazadun taberna da. Korta Erretegia, berriz, San Lorenzo auzoan kokatutako ezkontza eta ospakizunetarako erretegia da.",
+                faq_q4: "Zein da Korta Tabernako ordutegia, sukaldea eta pintxoen zerbitzua?",
+                faq_a4: "Asteko egun guztietan zabaltzen dugu: astelehenetik ostiralera 09:00etatik 22:30era, larunbatetan 10:30etik 00:30era eta igandeetan 10:30etik 22:30era. Sukaldeko ordutegia 13:00etatik 15:30era eta 20:00etatik 22:00etara da, egun osoan zehar pintxo hotz eta beroen barra etengabearekin.",
                 transition_quote: "\"Gure plateren sekretua ez dago errezetan, jatorrian baizik.\"",
-                footer_tagline: "Pintxoak eta tradizioa Zumarragatik",
+                footer_tagline: "Pintxoak, euskal sukaldaritza eta tradizioa 1985etik Eitza auzoan",
+                footer_address_title: "Kokapena eta Kontaktua",
+                footer_nav_title: "Nabigazioa",
+                footer_schedule_title: "Ordutegia",
+                footer_schedule_text: "Astelehenetik Ostiralera: 09:00 – 22:30 · Larunbata: 10:30 – 00:30 · Igandea: 10:30 – 22:30",
                 footer_links_title: "Estekak",
                 footer_contact_title: "Kontaktua",
                 footer_newsletter_title: "Jaso gure albisteak eta ekitaldiak",
@@ -168,7 +218,7 @@
                 day_fri: "Ostirala:",
                 day_sat: "Larunbata:",
                 day_sun: "Igandea:",
-                footer_copyright: "© 2026 Korta Taberna. Eskubide guztiak erreserbatuta."
+                footer_copyright: "© 2026 Korta Taberna. Eskubide guztiak erreserbatuta. San Gregorio Kalea, 20, 20700 Zumarraga - Urretxu (Gipuzkoa)."
             }
         };
 
@@ -176,7 +226,17 @@
         // Leer el idioma de la URL para indexación bilingüe en motores de búsqueda (hreflang)
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
-        let currentLang = (urlLang === 'es' || urlLang === 'eu') ? urlLang : (localStorage.getItem('korta_lang') || 'eu');
+        let currentLang;
+        if (urlLang === 'es' || urlLang === 'eu') {
+            currentLang = urlLang;
+        } else {
+            const savedLang = localStorage.getItem('korta_lang');
+            if (savedLang === 'es' || savedLang === 'eu') {
+                currentLang = savedLang;
+            } else {
+                currentLang = 'es';
+            }
+        }
 
         function updateTodaySchedule() {
             const todayEl = document.getElementById('today-schedule');
@@ -263,15 +323,33 @@
             localStorage.setItem('korta_lang', lang);
             document.documentElement.lang = lang;
 
-            // Actualizar canonical de forma dinámica para apuntar a la variante idiomática
+            // Actualizar canonical de forma dinámica para apuntar a la variante idiomática limpia
             const canonicalLink = document.querySelector('link[rel="canonical"]');
             if (canonicalLink) {
-                canonicalLink.href = 'https://kortataberna.com/?lang=' + lang;
+                canonicalLink.href = lang === 'eu' ? 'https://kortataberna.com/?lang=eu' : 'https://kortataberna.com/';
+            }
+
+            // Actualizar Title, Meta Description y OpenGraph dinámicamente según idioma
+            if (translations[lang] && translations[lang].page_title) {
+                document.title = translations[lang].page_title;
+            }
+            if (translations[lang] && translations[lang].meta_description) {
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) metaDesc.setAttribute('content', translations[lang].meta_description);
+                const ogTitle = document.querySelector('meta[property="og:title"]');
+                if (ogTitle) ogTitle.setAttribute('content', translations[lang].page_title);
+                const ogDesc = document.querySelector('meta[property="og:description"]');
+                if (ogDesc) ogDesc.setAttribute('content', translations[lang].meta_description);
+                const twTitle = document.querySelector('meta[property="twitter:title"]');
+                if (twTitle) twTitle.setAttribute('content', translations[lang].page_title);
+                const twDesc = document.querySelector('meta[property="twitter:description"]');
+                if (twDesc) twDesc.setAttribute('content', translations[lang].meta_description);
             }
 
             // Cambiar URL en el navegador sin recargar para compartir y posicionamiento SEO
             if (updateURL && window.history.replaceState) {
-                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang + window.location.hash;
+                const baseHref = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                const newUrl = lang === 'eu' ? (baseHref + '?lang=eu' + window.location.hash) : (baseHref + window.location.hash);
                 window.history.replaceState({ path: newUrl }, '', newUrl);
             }
 
@@ -363,6 +441,26 @@
 
             applyLanguage(currentLang);
             loadReviews();
+
+                        // --- COMPORTAMIENTO ACORDEÓN PREGUNTAS FRECUENTES (FAQ) ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const questionBtn = item.querySelector('.faq-question');
+                if (questionBtn) {
+                    questionBtn.addEventListener('click', () => {
+                        const isOpen = item.classList.contains('open');
+                        faqItems.forEach(otherItem => {
+                            otherItem.classList.remove('open');
+                            const otherBtn = otherItem.querySelector('.faq-question');
+                            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                        });
+                        if (!isOpen) {
+                            item.classList.add('open');
+                            questionBtn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            });
 
             // --- COMPORTAMIENTO DESPLEGABLE HORARIO ---
             const toggleBtn = document.getElementById('btn-schedule-toggle');
