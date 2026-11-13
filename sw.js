@@ -1,9 +1,10 @@
-const CACHE_NAME = 'korta-taberna-v5';
+const CACHE_NAME = 'korta-taberna-v6';
 const CORE_ASSETS = [
     './',
     'index.html',
     'css/styles.css',
     'js/script.js',
+    'site.webmanifest',
     'assets/images/logo.webp',
     'assets/images/hero-poster.webp',
     'assets/images/favicon.webp'

@@ -1,31 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://kortataberna.com/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kortataberna.com/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="eu" href="https://kortataberna.com/?lang=eu"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kortataberna.com/"/>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/foto-principal.webp</image:loc>
+      <image:title>Korta Taberna - Bar de Pintxos, Bocadillos y Terraza en Zumarraga y Urretxu</image:title>
+      <image:caption>Fachada exterior y terraza de Korta Taberna en San Gregorio Kalea 20, Barrio Eitza (Zumarraga - Urretxu).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-04.webp</image:loc>
+      <image:title>Pintxo de Rulo de Cabra con Jamón Ibérico y Anchoa</image:title>
+      <image:caption>Medallón de queso de cabra caramelizado con jamón ibérico curado y anchoa del Cantábrico sobre tosta crujiente en Korta Taberna.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-08.webp</image:loc>
+      <image:title>Bocadillo de Hongos Silvestres y Huevo Campero</image:title>
+      <image:caption>Bocadillo rústico de hongos silvestres de temporada con revuelto cremoso de huevos camperos en pan recién tostado.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-01.webp</image:loc>
+      <image:title>Bocatín de Lomo con Huevo y Pimiento Verde</image:title>
+      <image:caption>Lomo adobado a la plancha con revuelto jugoso de huevo y pimiento verde del país en pan rústico crujiente.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-10.webp</image:loc>
+      <image:title>Bocadillo de Pollo Crujiente con Bacon y Queso</image:title>
+      <image:caption>Pechuga de pollo crujiente casera con bacon ahumado, queso fundido, lechuga y tomate natural en Korta Taberna.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-02.webp</image:loc>
+      <image:title>Pintxo de Txangurro Gratinado</image:title>
+      <image:caption>Centollo desmigado sobre pan de cristal crujiente, gratinado al momento con suave alioli casero.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-03.webp</image:loc>
+      <image:title>Tosta de Anchoa del Cantábrico</image:title>
+      <image:caption>Anchoa de bajura del Cantábrico seleccionada sobre tosta con tomate asado natural y aceite de oliva virgen extra.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-05.webp</image:loc>
+      <image:title>Tortilla de Bacalao Tradicional</image:title>
+      <image:caption>Tortilla de bacalao tradicional vasca, jugosa y melosa con bacalao desalado y pimiento verde del país.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-06.webp</image:loc>
+      <image:title>Txuleta de Vaca Vieja a la Brasa</image:title>
+      <image:caption>Txuleta de vaca madurada a la brasa con sal en escamas y pimientos del piquillo confitados en Korta Taberna.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://kortataberna.com/?lang=es</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kortataberna.com/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="eu" href="https://kortataberna.com/?lang=eu"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kortataberna.com/"/>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/foto-principal.webp</image:loc>
+      <image:title>Korta Taberna - Bar de Pintxos, Bocadillos y Terraza en Zumarraga y Urretxu</image:title>
+      <image:caption>Fachada exterior y terraza de Korta Taberna en San Gregorio Kalea 20, Barrio Eitza (Zumarraga - Urretxu).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-04.webp</image:loc>
+      <image:title>Pintxo de Rulo de Cabra con Jamón Ibérico y Anchoa</image:title>
+      <image:caption>Medallón de queso de cabra caramelizado con jamón ibérico curado y anchoa del Cantábrico sobre tosta crujiente en Korta Taberna.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-08.webp</image:loc>
+      <image:title>Bocadillo de Hongos Silvestres y Huevo Campero</image:title>
+      <image:caption>Bocadillo rústico de hongos silvestres de temporada con revuelto cremoso de huevos camperos en pan recién tostado.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-01.webp</image:loc>
+      <image:title>Bocatín de Lomo con Huevo y Pimiento Verde</image:title>
+      <image:caption>Lomo adobado a la plancha con revuelto jugoso de huevo y pimiento verde del país en pan rústico crujiente.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-10.webp</image:loc>
+      <image:title>Bocadillo de Pollo Crujiente con Bacon y Queso</image:title>
+      <image:caption>Pechuga de pollo crujiente casera con bacon ahumado, queso fundido, lechuga y tomate natural en Korta Taberna.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-02.webp</image:loc>
+      <image:title>Pintxo de Txangurro Gratinado</image:title>
+      <image:caption>Centollo desmigado sobre pan de cristal crujiente, gratinado al momento con suave alioli casero.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-03.webp</image:loc>
+      <image:title>Tosta de Anchoa del Cantábrico</image:title>
+      <image:caption>Anchoa de bajura del Cantábrico seleccionada sobre tosta con tomate asado natural y aceite de oliva virgen extra.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-05.webp</image:loc>
+      <image:title>Tortilla de Bacalao Tradicional</image:title>
+      <image:caption>Tortilla de bacalao tradicional vasca, jugosa y melosa con bacalao desalado y pimiento verde del país.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-06.webp</image:loc>
+      <image:title>Txuleta de Vaca Vieja a la Brasa</image:title>
+      <image:caption>Txuleta de vaca madurada a la brasa con sal en escamas y pimientos del piquillo confitados en Korta Taberna.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://kortataberna.com/?lang=eu</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kortataberna.com/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="eu" href="https://kortataberna.com/?lang=eu"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kortataberna.com/"/>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/foto-principal.webp</image:loc>
+      <image:title>Korta Taberna - Pintxoak, Ogitartekoak eta Terraza Zumarraga eta Urretxun</image:title>
+      <image:caption>Korta Tabernaren fatxada eta kanpoko terraza Eitza Auzoan (San Gregorio Kalea 20, Zumarraga).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-04.webp</image:loc>
+      <image:title>Ahuntz Gazta eta Ibériko Pintxoa</image:title>
+      <image:caption>Ahuntz-gazta karamelizatua ezkur urdaiazpiko iberikoarekin eta Kantauriko antxoarekin ogi txigortu kurruskarian.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-08.webp</image:loc>
+      <image:title>Basoko Onddo eta Arrautza Ogitartekoa</image:title>
+      <image:caption>Ogi landatarra basoko onddo salteatuekin eta baserriko arrautza krematsuekin Korta Tabernan.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-01.webp</image:loc>
+      <image:title>Solomo, Arrautza eta Piper Berde Ogitartekoa</image:title>
+      <image:caption>Solomo samurra plantxan bertako piper berde gozoarekin eta arrautza krematsuarekin ogi laberatu berrian.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-10.webp</image:loc>
+      <image:title>Oilo Kurruskaria, Bakon eta Gazta Ogitartekoa</image:title>
+      <image:caption>Etxeko oilo paparra kurruskaria, bakon ketuarekin, gazta urtua eta bertako tomatearekin.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-02.webp</image:loc>
+      <image:title>Txangurro Pintxo Gratinatua</image:title>
+      <image:caption>Txangurro xehatua ogi kristal kurruskarian, etxeko alioli leunarekin unean bertan gratinatua.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-03.webp</image:loc>
+      <image:title>Kantauriko Antxoa Tosta</image:title>
+      <image:caption>Kostako antxoa hautatua tosta gainean, tomate erre naturalarekin eta oliba olio birjina estrarekin.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-05.webp</image:loc>
+      <image:title>Bakailao Tortilla Tradizionala</image:title>
+      <image:caption>Bakailao tortilla tradizionala, mamitsua eta eztitsua bertako piper berdearekin Korta Tabernan.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kortataberna.com/assets/images/pintxos/pintxo-06.webp</image:loc>
+      <image:title>Behi Zahar Txuleta Parrillan</image:title>
+      <image:caption>Behi zahar haragi ondua parrillan errea, bere puntuan zerbitzatua gatz-ezkatekin eta pikillo piperrekin.</image:caption>
+    </image:image>
   </url>
 </urlset>

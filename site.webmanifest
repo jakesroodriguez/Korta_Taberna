@@ -1,0 +1,57 @@
+{
+  "name": "Korta Taberna",
+  "short_name": "Korta",
+  "description": "Bar de pintxos, cocina vasca y brasa en Zumarraga y Urretxu",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#535845",
+  "background_color": "#f2f1ea",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "assets/images/favicon.webp",
+      "sizes": "192x192 512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/favicon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Carta",
+      "short_name": "Carta",
+      "description": "Consulta nuestra carta de pintxos, bocadillos y brasa",
+      "url": "./#carta",
+      "icons": [
+        {
+          "src": "assets/images/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    },
+    {
+      "name": "Horario y Reserva",
+      "short_name": "Contacto",
+      "description": "Horarios de apertura, ubicación y reservas",
+      "url": "./#contacto",
+      "icons": [
+        {
+          "src": "assets/images/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    }
+  ]
+}

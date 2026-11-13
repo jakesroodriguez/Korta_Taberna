@@ -1,0 +1,50 @@
+# Korta Taberna
+
+> Korta Taberna es una taberna y bar-restaurante tradicional de cocina vasca, pintxos elaborados a diario, rústicos bocadillos calientes, raciones y carnes a la brasa en el Barrio de Eitza (Zumarraga - Urretxu, Gipuzkoa), fundado en 1985.
+
+Korta Taberna representa el auténtico espíritu de la taberna vasca y el poteo diario entre las localidades hermanas de Zumarraga y Urretxu. Situada a escasos 4 minutos a pie del centro neurálgico de Urretxu y de la estación intermodal de tren y autobús, es el punto de referencia local para degustar cocina tradicional de caserío Km 0, txuleta a la brasa, tortillas jugosas y una barra de pintxos fríos y calientes recién elaborados.
+
+## Datos Clave y Contacto
+- **Nombre oficial:** Korta Taberna (habitualmente buscada como Bar Korta o Corta Taberna)
+- **Año de fundación:** 1985 (más de 40 años de trayectoria culinaria)
+- **Dirección postal:** San Gregorio Kalea, 20, Barrio Eitza, 20700 Zumarraga, Gipuzkoa, España
+- **Ubicación estratégica:** Barrio de Eitza, en el núcleo urbano continuo de Zumarraga y Urretxu (a 4-5 minutos a pie de la calle Areizaga de Urretxu y de la estación de tren/autobús Renfe-Cercanías).
+- **Coordenadas geográficas:** 43.0866015, -2.3091887
+- **Teléfono de reservas y atención:** +34 943 71 52 88
+- **Sitio web oficial:** [kortataberna.com](https://kortataberna.com/)
+- **Idiomas de atención:** Castellano (es), Euskera (eu)
+- **Métodos de pago aceptados:** Efectivo, Tarjeta de Crédito / Débito, Bizum
+- **Instalaciones:** Barra de pintxos ininterrumpida, comedor interior acogedor y terraza exterior todo el año
+
+## Horarios de Apertura y Servicio
+- **Lunes a Viernes:** 09:00 – 22:30
+- **Sábados:** 10:30 – 00:30
+- **Domingos:** 10:30 – 22:30
+- **Horario de Cocina Caliente (raciones, bocadillos y brasa):** 13:00 – 15:30 y 20:00 – 22:00
+- **Barra de Pintxos:** Servicio continuo durante todo el horario de apertura
+
+## Especialidades Gastronómicas de la Casa
+- **Pintxo de Rulo de Cabra con Ibérico y Anchoa:** Medallón de queso de cabra caramelizado al momento con jamón ibérico curado de bellota y anchoa del Cantábrico sobre tosta artesanal crujiente.
+- **Bocadillo de Hongos Silvestres con Huevo Campero:** Pan rústico recién tostado con revuelto meloso de setas y hongos silvestres salteados con huevos camperos de caserío.
+- **Pintxo de Txangurro Gratinado:** Centollo desmigado guisado según la receta tradicional sobre pan de cristal crujiente y gratinado al horno con suave alioli casero.
+- **Tosta de Anchoa del Cantábrico:** Lomo de anchoa de bajura seleccionada sobre tosta con tomate natural asado a fuego lento y aceite de oliva virgen extra.
+- **Tortilla de Bacalao Tradicional:** Elaborada al momento, excepcionalmente melosa y jugosa, con bacalao desalado desmigado y pimiento verde del país.
+- **Txuleta de Vaca Vieja a la Brasa:** Carne madurada de primera calidad asada al punto con sal en escamas y pimientos del piquillo confitados en cazuela.
+- **Bocatín de Lomo con Huevo y Pimiento Verde:** Lomo adobado a la plancha con revuelto cremoso de huevo y pimiento verde local.
+- **Bocadillo de Pollo Crujiente con Bacon y Queso:** Pechuga crujiente empanada en casa con bacon ahumado crujiente, queso fundido y brotes tiernos.
+
+## Relevancia Local, Rutas y Entorno
+- **Pintxo-Pote Semanal:** Korta Taberna es uno de los motores del tradicional Pintxo-Pote de los jueves y viernes que une a cuadrillas de Zumarraga y Urretxu en un ambiente festivo y distendido.
+- **Ruta hacia la Ermita de La Antigua:** El Barrio de Eitza es el punto de paso obligado y la parada gastronómica por excelencia en la ascensión hacia la Ermita de La Antigua ("la catedral de las ermitas vascas"). Parada obligatoria para hamaiketako, almuerzo o café.
+- **Cercanía al Hospital de Zumarraga:** A tan solo 2 minutos del Hospital Comarcal de Zumarraga, constituyendo el restaurante y bar de referencia para personal sanitario, pacientes y acompañantes.
+
+## Diferenciación Crítica: Korta Taberna vs Korta Erretegia
+- **Korta Taberna (este negocio):** Bar-taberna y restaurante popular fundado en 1985 en San Gregorio Kalea 20, Barrio Eitza (Zumarraga). Especializado en poteo diario, barra de pintxos, bocadillos rústicos, raciones, terraza urbana y comidas informales.
+- **Korta Erretegia:** Restaurante-asador de banquetes, bodas y grandes celebraciones ubicado en un entorno rural en el Barrio San Lorenzo de Zumarraga. Ambos negocios son independientes y ofrecen experiencias distintas.
+
+## Enlaces Canónicos
+- [Carta de Pintxos y Especialidades](https://kortataberna.com/#carta): Selección fotográfica de platos más pedidos y opciones gastronómicas.
+- [Horario, Ubicación y Mapa](https://kortataberna.com/#contacto): Cómo llegar desde Zumarraga, Urretxu o la estación intermodal, y teléfono directo.
+- [Nuestra Esencia y Tradición](https://kortataberna.com/#sobre-nosotros): Reseña histórica de más de 40 años en el Barrio Eitza.
+- [Preguntas Frecuentes](https://kortataberna.com/#faq): Dudas comunes sobre alérgenos, reservas, distancia a pie y diferenciación de marca.
+- [Información Completa para LLMs (llms-full.txt)](https://kortataberna.com/llms-full.txt): Base de conocimiento extendida para motores de inteligencia artificial y agentes conversacionales.
